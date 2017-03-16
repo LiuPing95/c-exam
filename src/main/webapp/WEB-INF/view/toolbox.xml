@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!-- 处理一些相对比较复杂的逻辑 -->
+<toolbox>
+	<tool>
+		<key>math</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.MathTool</class>
+	</tool>
+	<tool>
+		<key>date</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.DateTool</class>
+		<parameter name="format" value="yyyy-MM-dd HH:mm:ss" />
+	</tool>
+	<tool>
+		<key>NumberTool</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.NumberTool</class>
+	</tool>
+</toolbox>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+ #head()
+<style>
+	##全局居中
+  	* {
+	    margin: 0 auto;
+	    padding: 0;
+	    border:0;
+	}
+	.admin-content-body {
+		width: 100%;
+		height: 80%;
+	}
+	h1{
+		font-size:50px;
+		margin: 200px auto;
+	    padding: 0;
+	    border:0;
+	}
+</style>
+</head>
+
+<body>
+
+<header class="am-topbar am-topbar-inverse admin-header">
+  <div class="am-topbar-brand">
+    <strong>学生管理系统</strong>
+  </div>
+  <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+  <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+    <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+      <li class="am-dropdown" data-am-dropdown>
+        <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+          <span class="am-icon-users"></span>管理员 <span class="am-icon-caret-down"></span>
+        </a>
+        <ul class="am-dropdown-content">
+          <li><a href="#"><span class="am-icon-user"></span>资料</a></li>
+          <li><a href="#"><span class="am-icon-cog"></span>设置</a></li>
+          <li><a href="javascript:window.location.href='$!{rc.contextPath}/login'"><span class="am-icon-power-off"></span>退出</a></li>
+        </ul>
+      </li>
+      <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen"><span class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
+    <div class="am-offcanvas-bar admin-offcanvas-bar">
+      <ul class="am-list admin-sidebar-list">
+        <li><a href="javascript:window.location.href='$!{rc.contextPath}/toLogin'"><span class="am-icon-home"></span> 首页</a></li>
+        <li class="admin-parent">
+          <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> 页面模块 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+          <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+            <li><a href="javascript:window.location.href='$!{rc.contextPath}/stu/list'">学生信息管理</a></li>
+            <li><a href="javascript:window.location.href='$!{rc.contextPath}/cls/list'">班级管理</a></li>
+            <li><a href="javascript:window.location.href='$!{rc.contextPath}/dept/list'">系别管理</a></li>
+          </ul>
+        </li>
+      </ul>
+      <div class="am-panel am-panel-default admin-sidebar-panel">
+        <div class="am-panel-bd">
+          <p><span class="am-icon-bookmark"></span> 公告</p>
+          <p>时光静好，与君语；细水流年，与君同。—— Apple</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- sidebar end -->
+
+  <!-- content start -->
+  <div class="admin-content">
+  #if($!{msg} == "index")
+  	<h1>WELCOME TO OUR STUDENT MANAGER SYSTEM</h1>
+  #elseif($!{msg} == "stu")
+  	#student()
+  #elseif($!{msg} == "cls")
+  	#class()
+  #elseif($!{msg} == "dept")
+  	#dept()
+  #elseif($!{msg} == "stuEdit")
+  	#editStu()
+  #end
+  </div>
+  
+	<footer class="admin-content-footer">
+	  <hr>
+	  <p class="am-padding-left">© Apple, ManZai Cai, ManZai Ma, ManZai Peng.</p>
+	</footer>
+
+</div>
+    
+#amazeuiJs()
+#if($!{msg} && $!{msg} == "1")
+    <div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+	    <div class="am-modal-dialog">
+	        <div class="am-modal-bd">账号不能为空</div>
+	        <div class="am-modal-footer"><span class="am-modal-btn">确定</span></div>
+	    </div>
+    </div>
+    <script>$('#my-alert').modal('open');</script>
+  #end
+</body>
+</html>
