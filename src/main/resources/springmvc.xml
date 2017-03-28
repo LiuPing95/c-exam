@@ -17,7 +17,7 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-	<context:component-scan base-package="c-exam.controller" />
+	<context:component-scan base-package="c_exam.controller" />
 
 	<!-- 支持spring3.0新的mvc注解 -->
 	<mvc:annotation-driven />
