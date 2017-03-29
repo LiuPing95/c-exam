@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间是映射接口的全类名 -->
+<mapper namespace="c_exam.mapper.RoleMapper">
+
+	<insert id="addRole">
+		insert into roleInfo (
+			id, name, forDesc, createTime
+		)
+		values (
+			seq_for_roleInfo.nextval,
+			#{obj.name},
+			#{obj.forDesc},
+			sysdate
+		)
+	</insert>
+	
+</mapper>

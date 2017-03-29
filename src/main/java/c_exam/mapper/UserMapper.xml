@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间是映射接口的全类名 -->
+<mapper namespace="c_exam.mapper.UserMapper">
+
+	<insert id="addUser">
+		insert into userInfo (
+			id, roleId, name, img, sign, pwd, idCard, phone, addr, gender, birthday, classId, deptId, createTime
+		)
+		values (
+			seq_for_userInfo.nextval,
+			#{obj.roleId},
+			#{obj.name},
+			#{obj.img},
+			#{obj.sign},
+			#{obj.pwd},
+			#{obj.idCard},
+			#{obj.phone},
+			#{obj.addr},
+			#{obj.gender},
+			#{obj.birthday},
+			#{obj.classId},
+			#{obj.deptId},
+			sysdate
+		)
+	</insert>
+	
+</mapper>
