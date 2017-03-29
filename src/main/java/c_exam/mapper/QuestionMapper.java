@@ -2,7 +2,7 @@ package c_exam.mapper;
 
 import org.apache.ibatis.annotations.Param;
 
-import c_exam.bean.question.Question;
+import c_exam.bean.question.QuestionInfo;
 
 /**
  * 题目数据接口
@@ -12,6 +12,6 @@ import c_exam.bean.question.Question;
  */
 public interface QuestionMapper {
 
-	void addObj(@Param("obj") Question obj);
+	void addObj(@Param("obj") QuestionInfo obj);
 	
 }

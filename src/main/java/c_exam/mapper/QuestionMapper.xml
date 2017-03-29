@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="c_exam.mapper.QuestionMapper">
 
 	<insert id="addObj">
-		insert into questionObj (
+		insert into questionInfo (
 			id, content, forComment, questionType, itemA, itemB, itemC, itemD, answer, occurTime
 		)
 		values (

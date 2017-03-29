@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import c_exam.bean.question.Question;
+import c_exam.bean.question.QuestionInfo;
 import c_exam.mapper.QuestionMapper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -21,7 +21,7 @@ public class TestQuestionDao {
 	 */
 	@Test
 	public void testAdd() {
-		Question obj = new Question();
+		QuestionInfo obj = new QuestionInfo();
 		obj.setContent("content");
 		obj.setQuestionType("questionType");
 		obj.setForComment("forComment");

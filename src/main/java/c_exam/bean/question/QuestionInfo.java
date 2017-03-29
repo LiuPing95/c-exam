@@ -6,7 +6,7 @@ package c_exam.bean.question;
  * @author LiuPing
  * @since 2017年3月17日
  */
-public class Question {
+public class QuestionInfo {
 
 	private int id;
 
@@ -41,7 +41,7 @@ public class Question {
 	/**
 	 * 题目添加的时间
 	 */
-	private String occurTime;
+	private String createTime;
 
 	public int getId() {
 		return id;
@@ -50,7 +50,7 @@ public class Question {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public String getQuestionType() {
 		return questionType;
 	}
@@ -115,12 +115,12 @@ public class Question {
 		this.answer = answer;
 	}
 
-	public String getOccurTime() {
-		return occurTime;
+	public String getCreateTime() {
+		return createTime;
 	}
 
-	public void setOccurTime(String occurTime) {
-		this.occurTime = occurTime;
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
 	}
 
 }

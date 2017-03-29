@@ -6,7 +6,7 @@ package c_exam.bean.role;
  * @author LiuPing
  * @since 2017年3月19日
  */
-public class RoleAccess {
+public class RoleAccessInfo {
 
 	private int id;
 	

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
- #head()
+#head()
 <style>
 	##全局居中
   	* {
@@ -17,15 +17,15 @@
 		border-radius: 15px;
 	}
     .header {
-      text-align: center;
+    	text-align: center;
     }
     .header h1 {
-      font-size: 200%;
-      color: #333;
-      margin-top: 30px;
+    	font-size: 200%;
+    	color: #333;
+    	margin-top: 30px;
     }
     .header p {
-      font-size: 14px;
+    	font-size: 14px;
     }
     #login {
     	width:300px;
@@ -36,34 +36,34 @@
 <body>
 
 <div id="body">
-	<div class="header">
-	    <div class="am-g">
-	   		<h1>C 语言考试系统</h1>
-	    </div>
-	    <hr />
+<div class="header">
+    <div class="am-g">
+   		<h1>C 语言考试系统</h1>
     </div>
-    <form class="am-form" action="$!{rc.contextPath}/toLogin" method="post">
-	  	<fieldset>
-			<div id="login">
-			   <div class="am-form-group">
-					<select class="am-input-group" name="role">
-			        	<option value="admin">管理员登录</option>
-			        	<option value="teacher">教师登录</option>
-			        	<option value="student">学生登录</option>
-					</select>
-			    </div>
-				<div class="am-input-group">
-					<span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
-					<input type="text" class="am-form-field" name="name" placeholder="Username">
-				</div>
-				<div class="am-input-group">
-					<span class="am-input-group-label"><i class="am-icon-lock am-icon-fw"></i></span>
-					<input type="password" class="am-form-field" name="pwd" placeholder="Password">
-				</div>
-		    	<p><button type="submit" class="am-btn am-btn-default" style="float:right;">登 录</button></p>
+    <hr />
+</div>
+<form class="am-form" action="$!{rc.contextPath}/toLogin" method="post">
+  	<fieldset>
+		<div id="login">
+		   <div class="am-form-group">
+				<select class="am-input-group" name="role">
+		        	<option value="admin">管理员登录</option>
+		        	<option value="teacher">教师登录</option>
+		        	<option value="student">学生登录</option>
+				</select>
+		    </div>
+			<div class="am-input-group">
+				<span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
+				<input type="text" class="am-form-field" name="name" placeholder="Username">
 			</div>
-	  	</fieldset>
-	</form>
+			<div class="am-input-group">
+				<span class="am-input-group-label"><i class="am-icon-lock am-icon-fw"></i></span>
+				<input type="password" class="am-form-field" name="pwd" placeholder="Password">
+			</div>
+	    	<p><button type="submit" class="am-btn am-btn-default" style="float:right;">登 录</button></p>
+		</div>
+  	</fieldset>
+</form>
 </div>
     
 #amazeuiJs()
