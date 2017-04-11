@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import c_exam.bean.user.UserInfo;
 import c_exam.mapper.UserMapper;
+import c_exam.pojo.dao.UserInfo;
 
 /**
  * @author LiuPing

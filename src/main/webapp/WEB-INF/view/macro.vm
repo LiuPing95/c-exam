@@ -29,193 +29,193 @@
 	<input type="hidden" name="pageNum" id="pageNum" value="#if($!{page.size} == 0) $!{page.defaultPageNum} #else $!{page.pageNum} #end" />
 	##判断当页是否有数据
 	#if($!{page} && $!{page.size} > 0 && ($!{page.pageNum} != $!{page.defaultPageNum} || $!{page.size} == $!{page.pageSize}))
-	  ##设置js函数
-	  <script>
-	    function next() {
-		  var pn = document.getElementById("pageNum").value;
-		  document.getElementById("pageNum").value = Number(pn) + 1;
-		  document.getElementById("pageForm").submit();
-	    }
-	    function prev() {
-		  var pn = document.getElementById("pageNum").value;
-		  document.getElementById("pageNum").value = Number(pn) - 1;
-		  document.getElementById("pageForm").submit();
-		}
-	    function selectPageNum() {
-		  document.getElementById("pageNum").value = document.getElementById("pageSelect").value;
-		  document.getElementById("pageForm").submit();
-		}
-	  </script>
-	  ##显示上页、下页跳转链接
-	  <div class="am-cf">
-	    <div class="am-fr">
-	      <ul data-am-widget="pagination" class="am-pagination am-pagination-default">
-	        #if($!{page.pageNum} > $!{page.defaultPageNum})
-	          <li class="am-pagination-prev"><a href="javascript:prev()">上页</a></li>
-	        #end
+		##设置js函数
+		<script>
+			function next() {
+				var pn = document.getElementById("pageNum").value;
+				document.getElementById("pageNum").value = Number(pn) + 1;
+				document.getElementById("pageForm").submit();
+			}
+			function prev() {
+				var pn = document.getElementById("pageNum").value;
+				document.getElementById("pageNum").value = Number(pn) - 1;
+				document.getElementById("pageForm").submit();
+			}
+		    function selectPageNum() {
+				document.getElementById("pageNum").value = document.getElementById("pageSelect").value;
+				document.getElementById("pageForm").submit();
+			}
+		</script>
+	##显示上页、下页跳转链接
+	<div class="am-cf">
+		<div class="am-fr">
+			<ul data-am-widget="pagination" class="am-pagination am-pagination-default">
+				#if($!{page.pageNum} > $!{page.defaultPageNum})
+					<li class="am-pagination-prev"><a href="javascript:prev()">上页</a></li>
+	        	#end
 	        #if($!{page.totalPage} > 1)
-	          <li class="am-pagination-select">
-	            <div class="am-dropdown am-dropdown-up" data-am-dropdown>
-	              <select data-am-selected="{dropUp: 1, searchBox: 1, maxHeight: 160, btnWidth: 80, btnSize: 'sm'}" id="pageSelect" onchange="selectPageNum()">
-	                 #foreach($!{pageIndex} in [1 .. $!{page.totalPage}])
-    			      <option value="$!{pageIndex}" #if($!{page.pageNum}==$!{pageIndex}) selected #end>第$!{pageIndex}页</option>
-	                 #end
-	              </select>
-	              #*1.页数过多，仅能显示部分页码；2.右侧没有滚动条，无法选择页码
-	              <button class="am-btn am-btn-success am-dropdown-toggle am-btn-xs" data-am-dropdown-toggle>第$!{page.pageNum}页&nbsp;&nbsp</button>
-  				  <ul class="am-dropdown-content">
-  				    #foreach($!{pageIndex} in [1 .. $!{page.totalPage}])
-    			      <li><a href="javascript:selectPageNum($pageIndex)">第$!{pageIndex}页</a></li>
-	                #end
-  				  </ul>
-  				  *#
-			    </div>
-	          </li>
+	          	<li class="am-pagination-select">
+	            	<div class="am-dropdown am-dropdown-up" data-am-dropdown>
+		              	<select data-am-selected="{dropUp: 1, searchBox: 1, maxHeight: 160, btnWidth: 80, btnSize: 'sm'}" id="pageSelect" onchange="selectPageNum()">
+		                 	#foreach($!{pageIndex} in [1 .. $!{page.totalPage}])
+	    			      		<option value="$!{pageIndex}" #if($!{page.pageNum}==$!{pageIndex}) selected #end>第$!{pageIndex}页</option>
+		                 	#end
+		              	</select>
+		              	#*1.页数过多，仅能显示部分页码；2.右侧没有滚动条，无法选择页码
+		              	<button class="am-btn am-btn-success am-dropdown-toggle am-btn-xs" data-am-dropdown-toggle>第$!{page.pageNum}页&nbsp;&nbsp</button>
+	  				  	<ul class="am-dropdown-content">
+							#foreach($!{pageIndex} in [1 .. $!{page.totalPage}])
+		    			      	<li><a href="javascript:selectPageNum($pageIndex)">第$!{pageIndex}页</a></li>
+			                #end
+	  				  	</ul>
+	  				  	*#
+			    	</div>
+	          	</li>
 	        #end
 	        
 	        #if($!{page.totalSize} > 0)
 		        #if($!{page.pageNum} < $!{page.totalPage})
-		          <li class="am-pagination-next"><a href="javascript:next()">下页</a></li>
+		          	<li class="am-pagination-next"><a href="javascript:next()">下页</a></li>
 		        #end
 		    #else
 		        #if($!{page.size} == $!{page.pageSize})
-		          <li class="am-pagination-next"><a href="javascript:next()">下页</a></li>
+		          	<li class="am-pagination-next"><a href="javascript:next()">下页</a></li>
 		        #end
-		     #end
-	      </ul>
+		    #end
+	      	</ul>
 	    </div>
-	  </div>
+	</div>
 	##兼容性代码：修复最后一页刚好等于页面记录数时，不显示上一页的BUG
 	#elseif($!{page.size} == 0 && $!{page.pageNum} != $!{page.defaultPageNum})
-	  <script>
+	  	<script>
 	    function prev() {
-		  var pn = $!{page.pageNum};//兼容性代码：修复最后一页刚好等于页面记录数时，将页号设置为0的BUG
-		  document.getElementById("pageNum").value = Number(pn) - 1;
-		  document.getElementById("pageForm").submit();
+		  	var pn = $!{page.pageNum};//兼容性代码：修复最后一页刚好等于页面记录数时，将页号设置为0的BUG
+		  	document.getElementById("pageNum").value = Number(pn) - 1;
+		  	document.getElementById("pageForm").submit();
 		}
-	  </script>
-	  <div class="am-cf">
-	    <div class="am-fr">
-	      <ul data-am-widget="pagination" class="am-pagination am-pagination-default">
-	        <li class="am-pagination-prev"><a href="javascript:prev()">上页</a></li>
-	      </ul>
-	    </div>
-	  </div>
+	  	</script>
+	  	<div class="am-cf">
+	    	<div class="am-fr">
+	      		<ul data-am-widget="pagination" class="am-pagination am-pagination-default">
+	        		<li class="am-pagination-prev"><a href="javascript:prev()">上页</a></li>
+	      		</ul>
+	    	</div>
+	  	</div>
 	#end	  
 #end
 
 #macro(head)
-  <meta charset='utf-8'>
-  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-  <title>学生管理系统</title>
-  <meta name='viewport' content='width=device-width, initial-scale=1'>
-  <meta name='renderer' content='webkit'><meta http-equiv='Cache-Control' content='no-siteapp' />
-  <link rel='icon' type='image/png' href='$!{rc.contextPath}/static/assets/i/favicon.png'>
-  <link rel='apple-touch-icon-precomposed' href='$!{rc.contextPath}/start-console-web/static/assets/i/app-icon72x72@2x.png'>
-  <link rel='stylesheet' href='$!{rc.contextPath}/static/assets/css/amazeui.min.css'/>
-  <link rel='stylesheet' href='$!{rc.contextPath}/static/assets/css/admin.css'>
-  <link rel='stylesheet' href='$!{rc.contextPath}/static/assets/css/app.css'>
-  <script src="$!{rc.contextPath}/static/jquery-1.11.3.js"></script>
+  	<meta charset='utf-8'>
+  	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  	<title>C语言考试系统</title>
+  	<meta name='viewport' content='width=device-width, initial-scale=1'>
+  	<meta name='renderer' content='webkit'><meta http-equiv='Cache-Control' content='no-siteapp' />
+  	<link rel='icon' type='image/png' href='$!{rc.contextPath}/static/assets/i/favicon.png'>
+  	<link rel='apple-touch-icon-precomposed' href='$!{rc.contextPath}/start-console-web/static/assets/i/app-icon72x72@2x.png'>
+  	<link rel='stylesheet' href='$!{rc.contextPath}/static/assets/css/amazeui.min.css'/>
+  	<link rel='stylesheet' href='$!{rc.contextPath}/static/assets/css/admin.css'>
+  	<link rel='stylesheet' href='$!{rc.contextPath}/static/assets/css/app.css'>
+  	<script src="$!{rc.contextPath}/static/jquery-1.11.3.js"></script>
 #end
 
 #macro(top)
-  <!--[if lte IE 9]>
-    <p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请升级浏览器</a>以获得更好的体验！</p>
-  <![endif]-->
-  <header class="am-topbar admin-header">
-    <div class="am-topbar-brand">
-      <strong>$!{dingsns.mainTitle}</strong> <small>$!{dingsns.subTitle}</small>
-    </div>
-    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}">
-      <span class="am-sr-only">导航切换</span>
-      <span class="am-icon-bars"></span>
-    </button>
-    <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
-      <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
-        <li class="am-dropdown" data-am-dropdown><a href="javascript:;">$!{dingsns.user.role.name}</a></li>
-        <li class="am-dropdown" data-am-dropdown><a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">$!{dingsns.user.name}</a></li>
-        <li class="am-dropdown" data-am-dropdown><a href="$!{rc.contextPath}/logout" title="注销"><span class="am-icon-sign-out"></span></a></li>
-      </ul>
-    </div>
-  </header>
+  	<!--[if lte IE 9]>
+    	<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请升级浏览器</a>以获得更好的体验！</p>
+  	<![endif]-->
+  	<header class="am-topbar admin-header">
+    	<div class="am-topbar-brand">
+      		<strong>$!{dingsns.mainTitle}</strong> <small>$!{dingsns.subTitle}</small>
+    	</div>
+	    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}">
+	      	<span class="am-sr-only">导航切换</span>
+	      	<span class="am-icon-bars"></span>
+	    </button>
+	    <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+	      	<ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+	        	<li class="am-dropdown" data-am-dropdown><a href="javascript:;">$!{dingsns.user.role.name}</a></li>
+	        	<li class="am-dropdown" data-am-dropdown><a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">$!{dingsns.user.name}</a></li>
+	        	<li class="am-dropdown" data-am-dropdown><a href="$!{rc.contextPath}/logout" title="注销"><span class="am-icon-sign-out"></span></a></li>
+	      	</ul>
+	    </div>
+  	</header>
 #end
 
 #macro(crumb)
-  #set($auth_ = $!{dingsns.getAuth($!{request})})
-  #if($!{auth_})
-    <ol class="am-breadcrumb"><li>$!{auth_.module.name}</li><li class="am-active">$!{auth_.name}</li></ol>
-  #end
-  #if($!{exceptionMsg})
-    <div class="am-panel-group" id="accordion">
-      <div class="am-panel am-panel-danger">
-        <div class="am-panel-hd">
-          <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-1'}">&nbsp;&nbsp;服务器运行异常</h4>
-        </div>
-        <div id="do-not-say-1" class="am-panel-collapse am-collapse">
-          <div class="am-panel-bd">
-            <pre>$!{exceptionMsg}</pre>
-          </div>
-        </div>
-      </div>
-    </div>
-  #end
+  	#set($auth_ = $!{dingsns.getAuth($!{request})})
+  	#if($!{auth_})
+    	<ol class="am-breadcrumb"><li>$!{auth_.module.name}</li><li class="am-active">$!{auth_.name}</li></ol>
+  	#end
+  	#if($!{exceptionMsg})
+    	<div class="am-panel-group" id="accordion">
+      		<div class="am-panel am-panel-danger">
+		        <div class="am-panel-hd">
+		          	<h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-1'}">&nbsp;&nbsp;服务器运行异常</h4>
+		        </div>
+		        <div id="do-not-say-1" class="am-panel-collapse am-collapse">
+		          	<div class="am-panel-bd">
+		            	<pre>$!{exceptionMsg}</pre>
+		          	</div>
+		        </div>
+      		</div>
+    	</div>
+  	#end
 #end
 
 #macro(menu)
-  #set($uri_ = $!{dingsns.reqUri($request)})
-  <div class='admin-sidebar am-offcanvas' id='admin-offcanvas'>
-    <div class='am-offcanvas-bar admin-offcanvas-bar'>
-      <ul class='am-list admin-sidebar-list'>
-        <li><a href='$!{rc.contextPath}/index'>首页</a></li>
-        #set($moduleList_ = $!{dingsns.moduleList($!{dingsns.user})})
-        #foreach($module in $!{moduleList_})
-          <li class='admin-parent'>
-            <a class='am-cf' data-am-collapse="{target:'#$!{module.id}'}">$!{module.name}<span class='am-icon-angle-right am-fr am-margin-right'></span></a>
-            <ul class='am-list am-collapse admin-sidebar-sub#if($!{dingsns.containSubStr($!{module.authList},$!{uri_})}) am-in#end' id='$!{module.id}'>
-            #foreach($auth in $!{module.authList})
-              #if($!{auth} && $!{auth.isMenu} == 0)
-                <li><a href='$!{rc.contextPath}$!{auth.url}'>$!{auth.name}</a></li>
-              #end
-            #end
-            </ul>
-          </li>
-        #end
-      </ul>
-      <div class='am-panel am-panel-default admin-sidebar-panel'>
-        <div class='am-panel-bd'><p><span class="am-icon-bookmark"></span> 公告</p></div>
-      </div>
-    </div>
-  </div>
+  	#set($uri_ = $!{dingsns.reqUri($request)})
+	<div class='admin-sidebar am-offcanvas' id='admin-offcanvas'>
+		<div class='am-offcanvas-bar admin-offcanvas-bar'>
+  			<ul class='am-list admin-sidebar-list'>
+    			<li><a href='$!{rc.contextPath}/index'>首页</a></li>
+    				#set($moduleList_ = $!{dingsns.moduleList($!{dingsns.user})})
+					#foreach($module in $!{moduleList_})
+  						<li class='admin-parent'>
+    						<a class='am-cf' data-am-collapse="{target:'#$!{module.id}'}">$!{module.name}<span class='am-icon-angle-right am-fr am-margin-right'></span></a>
+		            		<ul class='am-list am-collapse admin-sidebar-sub#if($!{dingsns.containSubStr($!{module.authList},$!{uri_})}) am-in#end' id='$!{module.id}'>
+			            		#foreach($auth in $!{module.authList})
+			              			#if($!{auth} && $!{auth.isMenu} == 0)
+			                			<li><a href='$!{rc.contextPath}$!{auth.url}'>$!{auth.name}</a></li>
+			              			#end
+			            		#end
+		            		</ul>
+  						</li>
+					#end
+  				</ul>
+      		<div class='am-panel am-panel-default admin-sidebar-panel'>
+        		<div class='am-panel-bd'><p><span class="am-icon-bookmark"></span> 公告</p></div>
+      		</div>
+    	</div>
+  	</div>
 #end
 
 #macro(errorMsg)
-  #if($!{msg})
-    <div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
-      <div class="am-modal-dialog">
-        <div class="am-modal-bd">$!{msg}</div>
-        <div class="am-modal-footer"><span class="am-modal-btn">确定</span></div>
-      </div>
-    </div>
-    <script>$('#my-alert').modal('open');</script>
-  #end
+  	#if($!{msg})
+    	<div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+      		<div class="am-modal-dialog">
+        		<div class="am-modal-bd">$!{msg}</div>
+        		<div class="am-modal-footer"><span class="am-modal-btn">确定</span></div>
+      		</div>
+    	</div>
+    	<script>$('#my-alert').modal('open');</script>
+  	#end
 #end
 
 #macro(pageJs)
-  <script>
-    function pageSubmit() {
-	  document.getElementById("pageNum").value=1;
-	  document.getElementById("pageForm").submit();
+  	<script>
+    	function pageSubmit() {
+	  		document.getElementById("pageNum").value=1;
+	  		document.getElementById("pageForm").submit();
 	}
-  </script>
+  	</script>
 #end
 
 #macro(smMenu)
-  <a href='#' class='am-show-sm-only admin-menu' data-am-offcanvas="{target: '#admin-offcanvas'}">
-    <span class='am-icon-btn am-icon-th-list'></span>
-  </a>
+  	<a href='#' class='am-show-sm-only admin-menu' data-am-offcanvas="{target: '#admin-offcanvas'}">
+    	<span class='am-icon-btn am-icon-th-list'></span>
+  	</a>
 #end
 
 #macro(amazeuiJs)
-  <script src='$!{rc.contextPath}/static/assets/js/amazeui.min.js'></script>
-  <script src='$!{rc.contextPath}/static/assets/js/app.js'></script>
+  	<script src='$!{rc.contextPath}/static/assets/js/amazeui.min.js'></script>
+  	<script src='$!{rc.contextPath}/static/assets/js/app.js'></script>
 #end

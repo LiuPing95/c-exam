@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author LiuPing
@@ -13,7 +15,10 @@ import java.io.OutputStream;
 public class ParseUtil {
 	
 	public static void main(String[] args) throws Exception {
-		parse("C:\\Users\\Apple\\Desktop\\11.txt", "C:\\Users\\Apple\\Desktop\\6.txt");
+		List<String> list = new ArrayList<String>();
+		list.toArray();
+		list.toArray(new String[10]);
+//		parse("C:\\Users\\Apple\\Desktop\\11.txt", "C:\\Users\\Apple\\Desktop\\6.txt");
 	}
 
 	public static void parse(String srcPath, String destPath) throws Exception {

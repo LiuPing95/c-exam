@@ -75,7 +75,7 @@
 	    </div>
     </div>
     <script>$('#my-alert').modal('open');</script>
-  #end
+#end
 </body>
 </html>
 

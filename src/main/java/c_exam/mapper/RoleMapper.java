@@ -2,7 +2,7 @@ package c_exam.mapper;
 
 import org.apache.ibatis.annotations.Param;
 
-import c_exam.bean.role.RoleInfo;
+import c_exam.pojo.dao.RoleInfo;
 
 /**
  * @author LiuPing

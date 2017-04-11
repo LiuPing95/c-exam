@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import c_exam.bean.role.RoleInfo;
 import c_exam.mapper.RoleMapper;
+import c_exam.pojo.dao.RoleInfo;
 
 /**
  * @author LiuPing

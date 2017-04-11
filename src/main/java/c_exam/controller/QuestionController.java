@@ -9,11 +9,11 @@ import org.springframework.web.servlet.ModelAndView;
  * @since 2017年3月28日
  */
 @Controller
-@RequestMapping("/*")
-public class LoginController {
-	
-	@RequestMapping("")
-	public ModelAndView login() {
-		return new ModelAndView("index");
+@RequestMapping("/question")
+public class QuestionController {
+
+	@RequestMapping("list")
+	public ModelAndView list() {
+		return null;
 	}
 }

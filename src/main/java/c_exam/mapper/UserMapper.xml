@@ -7,20 +7,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="addUser">
 		insert into userInfo (
-			id, roleId, name, img, sign, pwd, idCard, phone, addr, gender, birthday, classId, deptId, createTime
+			id, roleId, name, pwd, gender, classId, deptId, createTime
 		)
 		values (
 			seq_for_userInfo.nextval,
 			#{obj.roleId},
 			#{obj.name},
-			#{obj.img},
-			#{obj.sign},
 			#{obj.pwd},
-			#{obj.idCard},
-			#{obj.phone},
-			#{obj.addr},
 			#{obj.gender},
-			#{obj.birthday},
 			#{obj.classId},
 			#{obj.deptId},
 			sysdate

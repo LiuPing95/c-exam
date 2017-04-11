@@ -9,6 +9,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -24,6 +26,15 @@ public class ConnectionTest {
 	
 	@Autowired
 	private SqlSessionFactory sqlSessionFactory;
+	
+	@Autowired
+	private StringRedisTemplate redisTemplate;
+	
+	@Test
+	public void testRedisConnection() {
+		RedisConnection con = redisTemplate.getConnectionFactory().getConnection();
+		assertNotNull(con);
+	}
 
 	@Test
 	public void testConnection() {

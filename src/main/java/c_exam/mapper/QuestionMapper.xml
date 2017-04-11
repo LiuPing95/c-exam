@@ -7,10 +7,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="addObj">
 		insert into questionInfo (
-			id, content, forComment, questionType, itemA, itemB, itemC, itemD, answer, occurTime
+			id, content, forComment, questionType, itemA, itemB, itemC, itemD, answer, createTime
 		)
 		values (
-			seq_for_questionObj.nextval,
+			seq_for_questionInfo.nextval,
 			#{obj.content},
 			#{obj.forComment},
 			#{obj.questionType},
@@ -22,5 +22,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			sysdate
 		)
 	</insert>
+	
+	<select id="getQuestion" resultType="QuestionInfo">
+		select * from questionInfo where id = #{id}
+	</select>
 	
 </mapper>

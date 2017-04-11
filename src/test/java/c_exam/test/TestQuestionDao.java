@@ -1,13 +1,16 @@
 package c_exam.test;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import c_exam.bean.question.QuestionInfo;
 import c_exam.mapper.QuestionMapper;
+import c_exam.pojo.dao.QuestionInfo;
+import c_exam.pojo.dao.QuestionType;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring.xml")
@@ -23,7 +26,7 @@ public class TestQuestionDao {
 	public void testAdd() {
 		QuestionInfo obj = new QuestionInfo();
 		obj.setContent("content");
-		obj.setQuestionType("questionType");
+		obj.setQuestionType(QuestionType.CHOOSE.getValue());
 		obj.setForComment("forComment");
 		obj.setAnswer("answer");
 		obj.setItemA("A");
@@ -31,5 +34,11 @@ public class TestQuestionDao {
 		obj.setItemC("C");
 		obj.setItemD("D");
 		mapper.addObj(obj);
+	}
+	
+	@Test
+	public void testGetById() {
+		List<QuestionInfo> info = mapper.getQuestion(100001);
+		System.out.println(info.get(0).getContent());
 	}
 }
