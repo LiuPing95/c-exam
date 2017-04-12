@@ -1,10 +1,14 @@
 package c_exam.pojo.dao;
 
+import java.io.Serializable;
+
 /**
  * @author LiuPing
  * @since 2017年4月11日
  */
-public class ExamSerialInfo {
+public class ExamSerialInfo implements Serializable {
+
+	private static final long serialVersionUID = -8684498358591353293L;
 
 	private int id;
 	

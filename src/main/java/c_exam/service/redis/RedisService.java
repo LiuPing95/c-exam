@@ -12,12 +12,16 @@ import org.springframework.stereotype.Service;
  * @since 2017年3月19日
  */
 @Service
-public class RedisService<K, V> {
+public class RedisService {
 
 	@Autowired
 	private StringRedisTemplate redisTemplate;
 	
 	@Autowired
-	private RedisTemplate<K, V> template;
+	private RedisTemplate<String, Object> template;
+	
+	public void addObject() {
+		template.boundHashOps("aa").put("aaa", "vsluie");
+	}
 	
 }
