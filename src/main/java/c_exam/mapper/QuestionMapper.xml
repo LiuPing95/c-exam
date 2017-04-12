@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 命名空间是映射接口的全类名 -->
 <mapper namespace="c_exam.mapper.QuestionMapper">
 
-	<insert id="addObj">
+	<insert id="addQuestion">
 		insert into questionInfo (
 			id, content, forComment, questionType, itemA, itemB, itemC, itemD, answer, createTime
 		)
@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
-	<select id="getQuestion" resultType="QuestionInfo">
+	<select id="getQuestionInfo" resultType="QuestionInfo">
 		select * from questionInfo where id = #{id}
 	</select>
 	

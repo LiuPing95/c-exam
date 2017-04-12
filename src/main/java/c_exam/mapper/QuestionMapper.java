@@ -14,8 +14,8 @@ import c_exam.pojo.dao.QuestionInfo;
  */
 public interface QuestionMapper {
 
-	void addObj(@Param("obj") QuestionInfo obj);
+	void addQuestion(@Param("obj") QuestionInfo obj);
 
-	List<QuestionInfo> getQuestion(@Param("id") Integer id);
+	List<QuestionInfo> getQuestionInfo(@Param("id") Integer id);
 
 }

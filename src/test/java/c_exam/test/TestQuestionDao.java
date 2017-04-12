@@ -33,12 +33,12 @@ public class TestQuestionDao {
 		obj.setItemB("B");
 		obj.setItemC("C");
 		obj.setItemD("D");
-		mapper.addObj(obj);
+		mapper.addQuestion(obj);
 	}
 	
 	@Test
 	public void testGetById() {
-		List<QuestionInfo> info = mapper.getQuestion(100001);
+		List<QuestionInfo> info = mapper.getQuestionInfo(100001);
 		System.out.println(info.get(0).getContent());
 	}
 }

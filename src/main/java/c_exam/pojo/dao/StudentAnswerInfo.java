@@ -22,7 +22,7 @@ public class StudentAnswerInfo implements Serializable {
 	
 	private String answer;
 	
-	private String occurTime;
+	private String createTime;
 
 	public int getId() {
 		return id;
@@ -64,12 +64,12 @@ public class StudentAnswerInfo implements Serializable {
 		this.answer = answer;
 	}
 
-	public String getOccurTime() {
-		return occurTime;
+	public String getCreateTime() {
+		return createTime;
 	}
 
-	public void setOccurTime(String occurTime) {
-		this.occurTime = occurTime;
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
 	}
 	
 }

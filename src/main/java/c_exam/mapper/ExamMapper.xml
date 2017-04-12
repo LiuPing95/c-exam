@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间是映射接口的全类名 -->
+<mapper namespace="c_exam.mapper.ExamMapper">
+
+	<insert id="addExam">
+		insert into examInfo (
+			id, questionId, examId, createTime
+		)
+		values (
+			seq_for_examInfo.nextval,
+			#{obj.questionId},
+			#{obj.examId},
+			sysdate
+		)
+	</insert>
+	
+</mapper>

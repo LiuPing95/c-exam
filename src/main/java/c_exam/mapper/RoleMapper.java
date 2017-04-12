@@ -5,6 +5,8 @@ import org.apache.ibatis.annotations.Param;
 import c_exam.pojo.dao.RoleInfo;
 
 /**
+ * 角色接口
+ * 
  * @author LiuPing
  * @since 2017年3月29日
  */
