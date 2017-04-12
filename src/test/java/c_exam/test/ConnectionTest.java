@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -30,10 +31,15 @@ public class ConnectionTest {
 	@Autowired
 	private StringRedisTemplate redisTemplate;
 	
+	@Autowired
+	private RedisTemplate<String, Object> template;
+	
 	@Test
 	public void testRedisConnection() {
 		RedisConnection con = redisTemplate.getConnectionFactory().getConnection();
+		RedisConnection con1 = template.getConnectionFactory().getConnection();
 		assertNotNull(con);
+		assertNotNull(con1);
 	}
 
 	@Test
