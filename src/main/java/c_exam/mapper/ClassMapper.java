@@ -16,6 +16,7 @@ public interface ClassMapper {
 
 	void addClass(@Param("obj") ClassInfo obj);
 
-	List<ClassInfo> getClassInfo(@Param("id") Integer id);
+	ClassInfo getClassInfoById(@Param("id") Integer id);
 
+	List<ClassInfo> getClassInfo(@Param("start") Integer start, @Param("end") Integer end);
 }

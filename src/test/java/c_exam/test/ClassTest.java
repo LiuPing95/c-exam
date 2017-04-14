@@ -1,5 +1,7 @@
 package c_exam.test;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +24,17 @@ public class ClassTest {
 		obj.setName("物联网工程");
 		obj.setDeptId(100001);
 		mapper.addClass(obj );
+	}
+	
+	@Test
+	public void testGetById() {
+		ClassInfo classes = mapper.getClassInfoById(100001);
+		System.out.println(classes);
+	}
+	
+	@Test
+	public void testGetClass() {
+		List<ClassInfo> classes = mapper.getClassInfo(0, 10);
+		System.out.println(classes);
 	}
 }
