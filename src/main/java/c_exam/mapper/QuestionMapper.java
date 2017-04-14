@@ -17,5 +17,9 @@ public interface QuestionMapper {
 	void addQuestion(@Param("obj") QuestionInfo obj);
 
 	List<QuestionInfo> getQuestionInfo(@Param("id") Integer id);
+	
+	List<QuestionInfo> getQuestionByIds(@Param("ids") List<Integer> ids);
+	
+	List<Integer> getQuestionIds(@Param("type") String type);
 
 }

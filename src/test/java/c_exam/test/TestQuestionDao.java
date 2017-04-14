@@ -1,5 +1,6 @@
 package c_exam.test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -40,5 +41,12 @@ public class TestQuestionDao {
 	public void testGetById() {
 		List<QuestionInfo> info = mapper.getQuestionInfo(100001);
 		System.out.println(info.get(0).getContent());
+	}
+	
+	@Test
+	public void testGetByIds() {
+		List<Integer> ids = new ArrayList<Integer>();
+		ids.add(100001);
+		mapper.getQuestionByIds(ids );
 	}
 }
