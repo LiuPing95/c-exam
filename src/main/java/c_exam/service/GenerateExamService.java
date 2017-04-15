@@ -31,7 +31,7 @@ public class GenerateExamService {
 
 	public Map<String, List<QuestionInfo>> generateQuestionIds(int examId) {
 		// 获取到这次考试的题型
-		List<ExamQuestionType> obj = examQuestionTypeMapper.getExamQuestionType(examId);
+		List<ExamQuestionType> obj = examQuestionTypeMapper.getExamQuestionTypeByExamId(examId);
 		Map<String, List<QuestionInfo>> map = new HashMap<String, List<QuestionInfo>>();
 		Random r = new Random();
 		for (ExamQuestionType dao : obj) {
