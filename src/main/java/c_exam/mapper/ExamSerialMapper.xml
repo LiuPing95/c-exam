@@ -16,4 +16,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
+	<select id="getExamSerialInfoById" resultType="ExamSerialInfo">
+		select * from examSerialInfo where id = #{id}
+	</select>
+	
+	<select id="getExamSerialInfo" resultType="ExamSerialInfo">
+		select * 
+		from
+			(select u.*,rownum rn 
+			from
+				(select * from examSerialInfo) u
+			where #{end} >= rownum)
+		where rn > #{start}
+	</select>
 </mapper>

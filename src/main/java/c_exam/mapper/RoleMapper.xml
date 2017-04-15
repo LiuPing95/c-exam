@@ -17,4 +17,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
+	<select id="getRoleInfoById" resultType="RoleInfo">
+		select * from roleInfo where id = #{id}
+	</select>
+	
+	<select id="getRoleByPage" resultType="RoleInfo">
+		select * 
+		from
+			(select u.*,rownum rn 
+			from
+				(select * from roleInfo) u
+			where #{end} >= rownum)
+		where rn > #{start}
+	</select>
 </mapper>

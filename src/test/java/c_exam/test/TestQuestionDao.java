@@ -37,11 +37,11 @@ public class TestQuestionDao {
 		mapper.addQuestion(obj);
 	}
 	
-//	@Test
-//	public void testGetById() {
-//		List<QuestionInfo> info = mapper.getQuestionInfo(100001);
-//		System.out.println(info.get(0).getContent());
-//	}
+	@Test
+	public void getQuestionByPage() {
+		List<QuestionInfo> info = mapper.getQuestionByPage(0, 3);
+		System.out.println(info.get(0).getContent());
+	}
 	
 	@Test
 	public void testGetByIds() {

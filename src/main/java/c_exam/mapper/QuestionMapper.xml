@@ -38,4 +38,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</foreach>
 	</select>
 	
+	<select id="getQuestionByPage" resultType="QuestionInfo">
+		select * 
+		from
+		(
+			select c.*,rownum rn 
+			from (select * from questionInfo) c
+			where #{end} >= rownum
+		)
+		where rn > #{start}
+	</select>
 </mapper>
