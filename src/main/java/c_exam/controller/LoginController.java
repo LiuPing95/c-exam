@@ -9,11 +9,24 @@ import org.springframework.web.servlet.ModelAndView;
  * @since 2017年3月28日
  */
 @Controller
-@RequestMapping("/*")
+@RequestMapping("/")
 public class LoginController {
 	
-	@RequestMapping("")
-	public ModelAndView login() {
-		return new ModelAndView("index");
+	@RequestMapping("toLogin")
+	public ModelAndView toLogin() {
+		return new ModelAndView("login");
 	}
+	
+	@RequestMapping("loginIn")
+	public ModelAndView loginIn() {
+		// 查询是否存在这个用户
+		// 
+		return new ModelAndView("index").addObject("content", "question");
+	}
+	
+	@RequestMapping("loginOut")
+	public ModelAndView loginOut() {
+		return new ModelAndView("login");
+	}
+	
 }

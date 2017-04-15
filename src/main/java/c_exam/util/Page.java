@@ -23,7 +23,7 @@ public class Page<T> {
 	private List<T> data = new ArrayList<T>();
 
 	public Integer getPageNum() {
-		return pageNum;
+		return pageNum <= 0 ? 1 : pageNum;
 	}
 
 	public void setPageNum(Integer pageNum) {
@@ -31,7 +31,7 @@ public class Page<T> {
 	}
 
 	public Integer getPageSize() {
-		return pageSize;
+		return pageSize <= 0 ? 10 : pageSize;
 	}
 
 	public void setPageSize(Integer pageSize) {

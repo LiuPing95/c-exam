@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import c_exam.mapper.QuestionMapper;
 import c_exam.pojo.dao.QuestionInfo;
@@ -20,9 +21,17 @@ public class QuestionController {
 	@Autowired
 	private QuestionMapper questionMapper;
 	
+//	@RequestMapping("list")
+//	public String list(Page<QuestionInfo> page, RedirectAttributes attr) {
+//		page.setData(questionMapper.getQuestionByPage(page.getPageNum(), page.getPageSize()));
+//		attr.addAttribute("content", "question");
+//		return "redirect:/index";
+//	}
+	
 	@RequestMapping("list")
-	public ModelAndView list(Page<QuestionInfo> page) {
+	public ModelAndView list() {
+		Page<QuestionInfo> page = new Page<QuestionInfo>();
 		page.setData(questionMapper.getQuestionByPage(page.getPageNum(), page.getPageSize()));
-		return new ModelAndView("index").addObject("page", page);
+		return new ModelAndView("index").addObject("content", "question").addObject("page", page);
 	}
 }
