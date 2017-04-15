@@ -27,4 +27,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from questionInfo where id = #{id}
 	</select>
 	
+	<select id="getQuestionIds">
+		select id from questionInfo where questionType = #{type}
+	</select>
+	
+	<select id="getQuestionByIds" resultType="QuestionInfo">
+		select * from questionInfo where id in
+		<foreach collection="ids" item="id" separator="," open="(" close=")">
+			#{id}
+		</foreach>
+	</select>
+	
 </mapper>
