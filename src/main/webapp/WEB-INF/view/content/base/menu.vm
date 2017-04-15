@@ -1,0 +1,27 @@
+#set($uri_ = $!{dingsns.reqUri($request)})
+<div class='admin-sidebar am-offcanvas' id='admin-offcanvas'>
+	<div class='am-offcanvas-bar admin-offcanvas-bar'>
+		<ul class='am-list admin-sidebar-list'>
+			<li><a href='$!{rc.contextPath}/index'>首页</a></li>
+				#set($moduleList_ = $!{dingsns.moduleList($!{dingsns.user})})
+				#foreach($module in $!{moduleList_})
+					<li class='admin-parent'>
+						<a class='am-cf' data-am-collapse="{target:'#$!{module.id}'}">$!{module.name}<span class='am-icon-angle-right am-fr am-margin-right'></span></a>
+	            		<ul class='am-list am-collapse admin-sidebar-sub#if($!{dingsns.containSubStr($!{module.authList},$!{uri_})}) am-in#end' id='$!{module.id}'>
+		            		#foreach($auth in $!{module.authList})
+		              			#if($!{auth} && $!{auth.isMenu} == 0)
+		                			<li><a href='$!{rc.contextPath}$!{auth.url}'>$!{auth.name}</a></li>
+		              			#end
+		            		#end
+	            		</ul>
+					</li>
+				#end
+			</ul>
+  		<div class='am-panel am-panel-default admin-sidebar-panel'>
+    		<div class='am-panel-bd'>
+				<p><span class="am-icon-bookmark"></span> 公告</p>
+          		<p>时光静好，与君语；细水流年，与君同。—— Apple</p>
+			</div>
+  		</div>
+	</div>
+</div>
