@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-#head()
+#parse("/content/base/head.vm")
 <style>
 	##全局居中
   	* {
@@ -45,13 +45,6 @@
 <form class="am-form" action="$!{rc.contextPath}/toLogin" method="post">
   	<fieldset>
 		<div id="login">
-		   <div class="am-form-group">
-				<select class="am-input-group" name="role">
-		        	<option value="admin">管理员登录</option>
-		        	<option value="teacher">教师登录</option>
-		        	<option value="student">学生登录</option>
-				</select>
-		    </div>
 			<div class="am-input-group">
 				<span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
 				<input type="text" class="am-form-field" name="name" placeholder="Username">
@@ -76,6 +69,31 @@
     </div>
     <script>$('#my-alert').modal('open');</script>
 #end
+<script>
+$.ajax({
+    type : 'post',
+    url : '$!{rc.contextPath}/loginIn',
+    data : {
+        mobile : $("#mobile").val(),
+        vcode : $("#vcode").val()
+    },
+    cache : false,
+    dataType:'json',
+    error : function (data) {
+		
+    },
+    success : function (data) {
+      	if(data == true){
+          	##说明验证成功，提示一下然后跳转页面
+          	$("#showMessage").text("验证成功");
+          	window.location.href='$!{rc.contextPath}/bus/accountBeanSend/send?id=' + $("#sendId").val();
+      	}else{
+      		##说明验证失败
+      		$("#showMessage").text("验证失败，点击重新发送重新获取验证码或点击旁边空白处退出");
+      	}
+    }
+});
+</script>
 </body>
 </html>
 
