@@ -37,4 +37,15 @@ public class TestUserDao {
 		user.setSign("sign");
 		mapper.addUser(user);
 	}
+	
+	@Test
+	public void testGetById(){
+		System.out.println(mapper.getUserById(100001));
+	}
+	
+	@Test
+	public void testGet(){
+		System.out.println(mapper.getUsers(1-1, 1*10));
+	}
 }
+

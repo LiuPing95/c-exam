@@ -22,6 +22,7 @@ public interface QuestionMapper {
 	
 	List<Integer> getQuestionIds(@Param("type") String type);
 
+	//根据题型分组
 	List<QuestionInfo> getQuestionByPage(@Param("start") int start, @Param("end") int end);
 
 }

@@ -20,7 +20,7 @@ public interface UserMapper {
 	 * @param pageSize
 	 * @return
 	 */
-	List<UserInfo> getUsers(@Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize);
+	List<UserInfo> getUsers(@Param("start") Integer start, @Param("end") Integer end);
 	
 	/**
 	 * 根据userId精确查找用户
@@ -28,5 +28,5 @@ public interface UserMapper {
 	 * @param userId
 	 * @return
 	 */
-	UserInfo getUserById(@Param("userId") Integer userId);
+	UserInfo getUserById(@Param("id") Integer id);
 }

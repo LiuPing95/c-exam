@@ -22,7 +22,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getClassInfo" resultType="ClassInfo">
-		select * from(
+		select * 
+		from
+		(
 			select c.*,rownum rn 
 			from (select * from classInfo) c
 			where #{end} >= rownum

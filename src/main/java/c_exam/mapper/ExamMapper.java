@@ -15,7 +15,9 @@ import c_exam.pojo.dao.ExamInfo;
 public interface ExamMapper {
 
 	void addExam(@Param("obj") ExamInfo obj);
-
-	List<ExamInfo> getExamInfo(@Param("id") Integer id);
+ 
+	ExamInfo getExamInfoById(@Param("id") Integer id);
+	
+	List<ExamInfo> getExamInfos(@Param("start") Integer start, @Param("end") Integer end);
 
 }

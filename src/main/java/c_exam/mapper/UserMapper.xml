@@ -21,4 +21,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
+	<select id="getUserById" resultType="UserInfo">
+		select * from userInfo where id = #{id}
+	</select>
+	
+	<select id="getUsers" resultType="UserInfo">
+		select * 
+		from
+			(select u.*,rownum rn 
+			from
+				(select * from userInfo) u
+			where #{end} >= rownum)
+		where rn > #{start}
+	</select>
+	
 </mapper>
