@@ -7,16 +7,11 @@
 	  		<input class="am-btn am-btn-primary" value="添加题目" onclick="window.location.href='$!{rc.contextPath}/item/toAdd?action=add'"/>
 	  		<input class="am-btn am-btn-primary" value="导入题目" onclick="window.location.href='$!{rc.contextPath}/item/toAdd?action=add'"/>
   		</div>
-  		<div class="am-g">
-  		<br />
 	    <div class="am-u-sm-12 am-u-md-3">
-	        <input type="text" name="itemName" class="am-form-field" placeholder="itemdentName">
+	        <input type="text" name="itemName" class="am-form-field" placeholder="题型">
 	    </div>
 	    <div class="am-u-sm-12 am-u-md-3">
-	        <input type="text" name="className" class="am-form-field" placeholder="ClassName">
-	    </div>
-	    <div class="am-u-sm-12 am-u-md-3">
-	        <input type="text" name="deptName" class="am-form-field" placeholder="DeptName">
+	        <input type="text" name="className" class="am-form-field" placeholder="内容">
 	    </div>
     	<span class="am-input-group-btn"><button class="am-btn am-btn-default" onclick="pageSubmit()">搜索</button></span>
 	    <div class="am-u-sm-12">

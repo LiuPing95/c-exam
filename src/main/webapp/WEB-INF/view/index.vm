@@ -15,10 +15,37 @@
 <!-- content start -->
 <div class="admin-content">
 ##内容
-#parse("content/$!{content}.vm")
+	#parse("content/$!{content}.vm")
 </div>
 
 </div>
 #amazeuiJs()
+<script>
+$(function(){
+});
+$.ajax({
+    type : 'post',
+    url : '$!{rc.contextPath}/loginIn',
+    data : {
+        mobile : $("#mobile").val(),
+        vcode : $("#vcode").val()
+    },
+    cache : false,
+    dataType:'json',
+    error : function (data) {
+		
+    },
+    success : function (data) {
+      	if(data == true){
+          	##说明验证成功，提示一下然后跳转页面
+          	$("#showMessage").text("验证成功");
+          	window.location.href='$!{rc.contextPath}/bus/accountBeanSend/send?id=' + $("#sendId").val();
+      	}else{
+      		##说明验证失败
+      		$("#showMessage").text("验证失败，点击重新发送重新获取验证码或点击旁边空白处退出");
+      	}
+    }
+});
+</script>
 </body>
 </html>

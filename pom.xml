@@ -21,9 +21,20 @@
 		<spring-context-support.version>4.0.4.RELEASE</spring-context-support.version>
 		<velocity.version>1.7</velocity.version>
 		<velocity-tools.version>2.0</velocity-tools.version>
+		<poi.version>3.11</poi.version>
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>${poi.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>${poi.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-redis</artifactId>

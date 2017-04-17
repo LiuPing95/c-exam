@@ -1,0 +1,60 @@
+<form #if($action == 'edit') action="$!{rc.contextPath}/bus/user/edit" #else action="$!{rc.contextPath}/bus/user/add" #end
+        method="post" class="am-form" data-am-validator>
+  #if($action == 'edit')
+    <input type="hidden" name="id" value="$!{user.id}" />
+  #end
+  <fieldset>
+    <div class="am-form-group">
+      <label for="roleName">角色</label><input type="text" id="roleName" name="roleName" value="$!{user.roleName}" readonly="readonly" required/>
+    </div>
+    <div class="am-form-group">
+      <label for="name">姓名</label><input type="text" id="name" name="name" value="$!{user.name}" required/>
+    </div>
+    <div class="am-form-group">
+      <label for="college">学校</label><input type="text" id="college" name="college" value="$!{user.college}" required/>
+    </div>
+    <div class="am-form-group">
+      <label for="gender">性别 </label><br/>
+      <select name="gender" id="gender" required>
+        <option value="不详">请选择</option>
+        <option value="男" #if($!{user.gender}=="男")selected#end>男</option>
+        <option value="女" #if($!{user.gender}=="女")selected#end>女</option>
+      </select>
+    </div>
+    <div class="am-form-group">
+      <label for="gender">性别 </label><br/>
+      <select name="gender" id="gender" required>
+        <option value="不详">请选择</option>
+        <option value="男" #if($!{user.gender}=="男")selected#end>男</option>
+        <option value="女" #if($!{user.gender}=="女")selected#end>女</option>
+      </select>
+    </div>
+    <div class="am-form-group">
+      <label for="gender">性别 </label><br/>
+      <select name="gender" id="gender" required>
+        <option value="不详">请选择</option>
+        <option value="男" #if($!{user.gender}=="男")selected#end>男</option>
+        <option value="女" #if($!{user.gender}=="女")selected#end>女</option>
+      </select>
+    </div>
+    <div class="am-form-group">
+      <label for="pwd">密码</label><input type="password" id="pwd" name="pwd" value="$!{user.pwd}" required/>
+    </div>
+    <div class="am-form-group">
+      <label for="birthday">出生日期</label><input type="text" id="birthday" name="birthday" value="$!{user.birthday}" required/>
+    </div>
+    <div class="am-form-group">
+      <label for="gender">性别</label><input type="text" id="gender" name="gender" value="$!{user.gender}" required/>
+    </div>
+    <div class="am-form-group">
+      <label for="pwd">密码</label><input type="password" id="pwd" name="pwd" value="$!{user.pwd}" required/>
+    </div>
+    <div class="am-form-group">
+      <label for="pwd">密码</label><input type="password" id="pwd" name="pwd" value="$!{user.pwd}" required/>
+    </div>
+    <div class="am-cf">
+	  <button class="am-btn am-btn-primary am-round am-fl" type="submit">#if($action == 'edit') 保存 #else 添加 #end</button>
+	  <button class="am-btn am-btn-success am-round am-fr" type="button" id="returnListPage">返回</button>
+	</div>
+  </fieldset>
+</form>
