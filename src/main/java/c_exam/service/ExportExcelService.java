@@ -29,7 +29,7 @@ public class ExportExcelService {
 
 	private Logger log = LoggerFactory.getLogger(ExportExcelService.class);
 
-	public static final String PATH = "static/assets/file/export/";
+	public static final String PATH = "static/assets/excel/";
 
 	public final SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -37,18 +37,6 @@ public class ExportExcelService {
 
 	private final Integer MAX_ROW = 50000;
 
-	/**
-	 * 插入数据
-	 * 
-	 * @param prefix 文件路径前缀
-	 * @param name 模块名称
-	 * @param date 时间：yyyyMMddHHmmss
-	 * @param sheetName sheet名称
-	 * @param task 任务对象：必须设置id
-	 * @param data 数据
-	 * @return
-	 * @throws IOException
-	 */
 	public void addData(String prefix, String userName, String name, String date, String sheetName, String[] data)
 			throws IOException {
 		String df = prefix + PATH + userName + "_" + name + "_" + date + ".xlsx";
@@ -74,17 +62,6 @@ public class ExportExcelService {
 		in.close();
 	}
 
-	/**
-	 * 插入excel表头
-	 * 
-	 * @param prefix 文件路径前缀
-	 * @param name 模块名称
-	 * @param date 时间：yyyyMMddHHmmss
-	 * @param sheetName sheet名称
-	 * @param task 任务对象：必须设置id
-	 * @param data 数据
-	 * @return
-	 */
 	public boolean addHead(String prefix, String userName, String name, String date, String sheetName, String[] data) {
 		try {
 			String df = prefix + PATH + userName + "_" + name + "_" + date + ".xlsx";
@@ -116,15 +93,6 @@ public class ExportExcelService {
 		return true;
 	}
 
-	/**
-	 * 获取sheetName
-	 * 
-	 * @param prefix 文件路径前缀
-	 * @param name 模块名称
-	 * @param date 时间：yyyyMMddHHmmss
-	 * @return
-	 * @throws IOException
-	 */
 	public String getSheetName(String prefix, String userName, String name, String date) throws IOException {
 		int sheetNum = 1;
 		String sheetName = "";
@@ -147,14 +115,6 @@ public class ExportExcelService {
 		return sheetName;
 	}
 
-	/**
-	 * 复制excel
-	 * 
-	 * @param prefix 文件路径前缀
-	 * @param name 模块名称
-	 * @param date 时间：yyyyMMddHHmmss
-	 * @return
-	 */
 	public boolean cpExcel(String prefix, String userName, String name, String date) {
 		String location = PATH + userName + "_" + name + "_" + date + ".xlsx";
 		String sf = prefix + PATH + "excel.xlsx";
@@ -162,12 +122,6 @@ public class ExportExcelService {
 		return cp(sf, df);
 	}
 
-	/**
-	 * 复制文件
-	 * 
-	 * @param s 源文件路径
-	 * @param t 目标文件路径
-	 */
 	private boolean cp(String s, String t) {
 		FileInputStream fi = null;
 		FileOutputStream fo = null;

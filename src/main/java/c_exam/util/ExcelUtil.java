@@ -1,6 +1,5 @@
 package c_exam.util;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.DecimalFormat;
@@ -24,16 +23,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public class ExcelUtil {
 
-	/**
-	 * 读取Excel的内容，第一维数组存储的是一行中格列的值，二维数组存储的是多少个行
-	 * 
-	 * @param file 读取数据的源Excel
-	 * @param ignoreRows 读取数据忽略的行数，比喻行头不需要读入 忽略的行数为1
-	 * @return 读出的Excel中数据的内容
-	 * @throws FileNotFoundException
-	 * @throws IOException
-	 * @throws InvalidFormatException
-	 */
 	public static String[][] getData(InputStream in, int ignoreRows) throws InvalidFormatException, IOException {
 		List<String[]> result = new ArrayList<String[]>();
 		int rowSize = 0;
@@ -119,12 +108,6 @@ public class ExcelUtil {
 		}
 	}
 
-	/**
-	 * 去掉字符串右边的空格
-	 * 
-	 * @param str 要处理的字符串
-	 * @return 处理后的字符串
-	 */
 	public static String rightTrim(String str) {
 		if (str == null) {
 			return "";
