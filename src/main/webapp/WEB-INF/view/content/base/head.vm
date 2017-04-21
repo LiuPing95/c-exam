@@ -1,4 +1,3 @@
-<head lang="en">
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge'>
 <title>C语言考试系统</title>
@@ -10,4 +9,3 @@
 <link rel='stylesheet' href='$!{rc.contextPath}/static/assets/css/admin.css'>
 <link rel='stylesheet' href='$!{rc.contextPath}/static/assets/css/app.css'>
 <script src="$!{rc.contextPath}/static/jquery-1.11.3.js"></script>
-</head>
