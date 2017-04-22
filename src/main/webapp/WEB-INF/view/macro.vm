@@ -26,9 +26,9 @@
 #end
 
 #macro(page)
-	<input type="hidden" name="pageNum" id="pageNum" value="#if($!{page.size} == 0) $!{page.defaultPageNum} #else $!{page.pageNum} #end" />
+	<input type="hidden" name="pageNum" id="pageNum" value="$!{page.pageNum}" />
 	##判断当页是否有数据
-	#if($!{page} && $!{page.size} > 0 && ($!{page.pageNum} != $!{page.defaultPageNum} || $!{page.size} == $!{page.pageSize}))
+	#if($!{page})
 		##设置js函数
 		<script>
 			function next() {
@@ -73,7 +73,7 @@
 	          	</li>
 	        #end
 	        
-	        #if($!{page.totalSize} > 0)
+	        #if($!{page.total} > 0)
 		        #if($!{page.pageNum} < $!{page.totalPage})
 		          	<li class="am-pagination-next"><a href="javascript:next()">下页</a></li>
 		        #end
@@ -104,27 +104,6 @@
 	#end	  
 #end
 
-#macro(crumb)
-  	#set($auth_ = $!{dingsns.getAuth($!{request})})
-  	#if($!{auth_})
-    	<ol class="am-breadcrumb"><li>$!{auth_.module.name}</li><li class="am-active">$!{auth_.name}</li></ol>
-  	#end
-  	#if($!{exceptionMsg})
-    	<div class="am-panel-group" id="accordion">
-      		<div class="am-panel am-panel-danger">
-		        <div class="am-panel-hd">
-		          	<h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-1'}">&nbsp;&nbsp;服务器运行异常</h4>
-		        </div>
-		        <div id="do-not-say-1" class="am-panel-collapse am-collapse">
-		          	<div class="am-panel-bd">
-		            	<pre>$!{exceptionMsg}</pre>
-		          	</div>
-		        </div>
-      		</div>
-    	</div>
-  	#end
-#end
-
 #macro(errorMsg)
   	#if($!{msg})
     	<div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
@@ -144,12 +123,6 @@
 	  		document.getElementById("pageForm").submit();
 	}
   	</script>
-#end
-
-#macro(smMenu)
-  	<a href='#' class='am-show-sm-only admin-menu' data-am-offcanvas="{target: '#admin-offcanvas'}">
-    	<span class='am-icon-btn am-icon-th-list'></span>
-  	</a>
 #end
 
 #macro(amazeuiJs)
