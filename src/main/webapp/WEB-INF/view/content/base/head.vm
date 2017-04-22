@@ -8,4 +8,4 @@
 <link rel='stylesheet' href='$!{rc.contextPath}/static/assets/css/amazeui.min.css'/>
 <link rel='stylesheet' href='$!{rc.contextPath}/static/assets/css/admin.css'>
 <link rel='stylesheet' href='$!{rc.contextPath}/static/assets/css/app.css'>
-<script src="$!{rc.contextPath}/static/jquery-1.11.3.js"></script>
+<script src="$!{rc.contextPath}/static/assets/js/jquery-1.11.3.js"></script>
