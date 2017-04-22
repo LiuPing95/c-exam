@@ -50,7 +50,7 @@
 	<div class="am-cf">
 		<div class="am-fr">
 			<ul data-am-widget="pagination" class="am-pagination am-pagination-default">
-				#if($!{page.pageNum} > $!{page.defaultPageNum})
+				#if($!{page.pageNum} > 1)
 					<li class="am-pagination-prev"><a href="javascript:prev()">上页</a></li>
 	        	#end
 	        #if($!{page.totalPage} > 1)
@@ -72,21 +72,14 @@
 			    	</div>
 	          	</li>
 	        #end
-	        
-	        #if($!{page.total} > 0)
-		        #if($!{page.pageNum} < $!{page.totalPage})
-		          	<li class="am-pagination-next"><a href="javascript:next()">下页</a></li>
-		        #end
-		    #else
-		        #if($!{page.size} == $!{page.pageSize})
-		          	<li class="am-pagination-next"><a href="javascript:next()">下页</a></li>
-		        #end
-		    #end
+	        #if($!{page.pageNum} < $!{page.totalPage})
+	          	<li class="am-pagination-next"><a href="javascript:next()">下页</a></li>
+	        #end
 	      	</ul>
 	    </div>
 	</div>
 	##兼容性代码：修复最后一页刚好等于页面记录数时，不显示上一页的BUG
-	#elseif($!{page.size} == 0 && $!{page.pageNum} != $!{page.defaultPageNum})
+	#elseif($!{page.size} == 0 && $!{page.pageNum} != 1)
 	  	<script>
 	    function prev() {
 		  	var pn = $!{page.pageNum};//兼容性代码：修复最后一页刚好等于页面记录数时，将页号设置为0的BUG
