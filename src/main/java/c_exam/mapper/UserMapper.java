@@ -29,4 +29,12 @@ public interface UserMapper {
 	 * @return
 	 */
 	UserInfo getUserById(@Param("id") Integer id);
+
+	/**
+	 * 用户登录
+	 * 
+	 * @param user
+	 * @return
+	 */
+	UserInfo userLogin(@Param("user") UserInfo user);
 }

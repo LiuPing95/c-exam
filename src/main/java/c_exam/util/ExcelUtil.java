@@ -23,6 +23,15 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public class ExcelUtil {
 
+	/**
+	 * TODO：目前还有一个问题就是最后总会读取一个空字符，暂时没有考虑
+	 * 
+	 * @param in
+	 * @param ignoreRows
+	 * @return
+	 * @throws InvalidFormatException
+	 * @throws IOException
+	 */
 	public static String[][] getData(InputStream in, int ignoreRows) throws InvalidFormatException, IOException {
 		List<String[]> result = new ArrayList<String[]>();
 		int rowSize = 0;
@@ -39,13 +48,14 @@ public class ExcelUtil {
 						result.add(new String[] {});
 						continue;
 					}
-					int tempRowSize = row.getLastCellNum() + 1;
+					
+					int tempRowSize = row.getLastCellNum();
 					if (tempRowSize > rowSize) {
 						rowSize = tempRowSize;
 					}
 					String[] values = new String[rowSize];
 					Arrays.fill(values, "");
-					for (short columnIndex = 0; columnIndex <= row.getLastCellNum(); columnIndex++) {
+					for (short columnIndex = 0; columnIndex < row.getLastCellNum(); columnIndex++) {
 						String value = "";
 						cell = row.getCell(columnIndex);
 						if (cell != null) {
@@ -108,7 +118,7 @@ public class ExcelUtil {
 		}
 	}
 
-	public static String rightTrim(String str) {
+	private static String rightTrim(String str) {
 		if (str == null) {
 			return "";
 		}

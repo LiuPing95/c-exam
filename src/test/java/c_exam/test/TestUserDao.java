@@ -24,17 +24,18 @@ public class TestUserDao {
 	public void testAdd() {
 		UserInfo user = new UserInfo();
 		user.setRoleId(100001);
-		user.setAddr("addr");
-		user.setBirthday("birthday");
+		user.setAddr("地球");
+		user.setCollege("衡阳师范学院");
+		user.setBirthday("1995-01-27");
 		user.setClassId(100001);
 		user.setDeptId(100001);
 		user.setGender("男");
-		user.setIdCard("idCard");
-		user.setPwd("pwd");
-		user.setImg("img");
-		user.setName("name");
-		user.setPhone("phone");
-		user.setSign("sign");
+		user.setIdCard("430581199501276010");
+		user.setPwd("a");
+		user.setImg("");
+		user.setName("apple");
+		user.setPhone("15675974359");
+		user.setSign("时光静好，与君语；细水流年，与君同。");
 		mapper.addUser(user);
 	}
 	

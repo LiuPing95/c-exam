@@ -10,39 +10,41 @@ import java.util.List;
  */
 public class Page<T> {
 	
-	private Integer pageNum;
+	private int pageNum = 1;
 	
-	private Integer pageSize;
+	private int pageSize = 10;
 	
 	/**
 	 * TODO：每次查询都会查询一次总数据量，能不能只查一次
 	 * 总数据量
 	 */
-	private Integer total;
+	private int total;
+	
+	private int totalPage;
 	
 	private List<T> data = new ArrayList<T>();
 
-	public Integer getPageNum() {
+	public int getPageNum() {
 		return pageNum <= 0 ? 1 : pageNum;
 	}
 
-	public void setPageNum(Integer pageNum) {
+	public void setPageNum(int pageNum) {
 		this.pageNum = pageNum;
 	}
 
-	public Integer getPageSize() {
+	public int getPageSize() {
 		return pageSize <= 0 ? 10 : pageSize;
 	}
 
-	public void setPageSize(Integer pageSize) {
+	public void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
 	}
 
-	public Integer getTotal() {
+	public int getTotal() {
 		return total;
 	}
 
-	public void setTotal(Integer total) {
+	public void setTotal(int total) {
 		this.total = total;
 	}
 
@@ -52,6 +54,14 @@ public class Page<T> {
 
 	public void setData(List<T> data) {
 		this.data = data;
+	}
+
+	public int getTotalPage() {
+		return totalPage;
+	}
+
+	public void setTotalPage(int totalPage) {
+		this.totalPage = totalPage;
 	}
 	
 }

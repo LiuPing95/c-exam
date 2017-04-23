@@ -39,13 +39,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getQuestionByPage" resultType="QuestionInfo">
-		select * 
-		from
-		(
+		select * from(
 			select c.*,rownum rn 
 			from (select * from questionInfo) c
-			where #{end} >= rownum
+			where rownum > #{start}
 		)
-		where rn > #{start}
+		where #{end} >= rn
+	</select>
+	
+	<select id="getTotal" resultType="int">
+		select count(id) from questionInfo
+		<if test="type != null">
+			where questionType = #{type}
+		</if>
 	</select>
 </mapper>

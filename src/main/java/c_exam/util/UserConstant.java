@@ -11,7 +11,12 @@ public final class UserConstant {
 	}
 	
 	/**
-	 * 当前登录用户：可用枚举代替？
+	 * 当前登录用户：可用枚举代替？（已经包含了角色信息）
 	 */
 	public final static String CUR_USER = "currentUser";
+	
+	/**
+	 * 当前用户拥有的权限
+	 */
+	public final static String CUR_PERMISSION = "currentPermission";
 }

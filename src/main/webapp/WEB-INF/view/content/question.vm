@@ -18,14 +18,14 @@
 	  		<table class="am-table am-table-bd am-table-striped admin-content-table">
 	        <thead>
 	        <tr>
-          		<th>ID</th><th>题型</th><th>内容</th><th>选项A</th><th>选项B</th><th>选项C</th><th>选项D</th><th>解析</th><th>答案</th><th>添加时间</th><th>Option</th>
+          		<th>ID</th><th>题型</th><th>内容</th><th>选项A</th><th>选项B</th><th>选项C</th><th>选项D</th><th>解析</th><th>答案</th><th>添加时间</th><th>管理</th>
         	</tr>
         	</thead>
         	<tbody>
         	#foreach($item in $!{page.data})
             <tr>
         	  	<td>$!{item.id}</td>
-        	  	<td>$!{item.questionType}</td>
+        	  	<td>#if($!{item.questionType}=="CHOOSE") 选择题 #end</td>
         	  	<td>$!{item.content}</td>
         	  	<td>$!{item.itemA}</td>
         	  	<td>$!{item.itemB}</td>

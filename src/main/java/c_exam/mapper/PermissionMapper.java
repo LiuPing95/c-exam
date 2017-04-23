@@ -26,6 +26,10 @@ public interface PermissionMapper {
 	/**
 	 * TODO:暂未实现
 	 */
-	PermissionInfo getPermissionInfo(@Param("id") Integer id);
+	PermissionInfo getPermissionById(@Param("id") Integer id);
+
+	List<PermissionInfo> getByIds(@Param("ids") List<Integer> ids);
+
+	List<PermissionInfo> getAll();
 
 }

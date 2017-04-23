@@ -10,6 +10,16 @@ public class UserDto {
 
 	private int id;
 	
+	private int roleId;
+	
+	public int getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
+	}
+
 	private String roleName;
 	
 	private String name;

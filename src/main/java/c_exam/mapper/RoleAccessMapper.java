@@ -17,5 +17,7 @@ public interface RoleAccessMapper {
 	void addRoleAccess(@Param("obj") RoleAccessInfo obj);
 
 	List<RoleAccessInfo> getRoleAccessInfo(@Param("id") Integer id);
+	
+	List<Integer> getPermissionIdByRoleId(@Param("roleId") int roleId);
 
 }

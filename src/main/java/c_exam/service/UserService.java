@@ -2,11 +2,12 @@ package c_exam.service;
 
 import java.util.List;
 
+import c_exam.pojo.dao.UserInfo;
 import c_exam.pojo.dto.UserDto;
 
 public interface UserService {
 
-	UserDto userLogin();
+	UserDto userLogin(UserInfo user);
 	
 	UserDto getUserById(int userId);
 

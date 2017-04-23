@@ -17,4 +17,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
+	<select id="getPermissionIdByRoleId"  resultType="int">
+		select id from roleAccessInfo where roleId = #{roleId}
+	</select>
+	
 </mapper>

@@ -7,10 +7,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="addUser">
 		insert into userInfo (
-			id, roleId, name, pwd, gender, classId, deptId, createTime
+			id, birthday, addr, sign, idCard, phone, college, roleId, name, pwd, gender, classId, deptId, createTime
 		)
 		values (
 			seq_for_userInfo.nextval,
+			#{obj.birthday},
+			#{obj.addr},
+			#{obj.sign},
+			#{obj.idCard},
+			#{obj.phone},
+			#{obj.college},
 			#{obj.roleId},
 			#{obj.name},
 			#{obj.pwd},
@@ -20,6 +26,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			sysdate
 		)
 	</insert>
+	
+	<select id="userLogin" resultType="UserInfo">
+		select * from userInfo
+		where pwd = #{user.pwd}
+		<if test="user.idCard != null and user.idCard != ''">
+			and idCard = #{user.idCard}
+		</if>
+		<if test="user.id != 0">
+			and id = #{user.id}
+		</if>
+		<if test="user.phone != '' and user.phone != null">
+			and phone = #{user.phone}
+		</if>
+	</select>
 	
 	<select id="getUserById" resultType="UserInfo">
 		select * from userInfo where id = #{id}

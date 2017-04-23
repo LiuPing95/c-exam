@@ -30,9 +30,7 @@ public class QuestionController {
 	
 	@RequestMapping("list")
 	public ModelAndView list() {
-		Page<QuestionInfo> page = new Page<QuestionInfo>();
-		page.setData(questionService.getQuestionByPage(page.getPageNum(), page.getPageSize()));
-		return new ModelAndView("index").addObject("content", "question").addObject("page", page);
+		return new ModelAndView("index").addObject("content", "question").addObject("page", questionService.getQuestionByPage(1, 10));
 	}
 	
 	@RequestMapping("import")
@@ -70,7 +68,7 @@ public class QuestionController {
 					}
 				}
 				if (list.size() == data.length - 1) {
-					questionService.batchAdd(list);
+					
 				}
 			}
 		} catch (Exception e) {

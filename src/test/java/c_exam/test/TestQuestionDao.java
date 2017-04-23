@@ -39,8 +39,8 @@ public class TestQuestionDao {
 	
 	@Test
 	public void testGetById() {
-		QuestionInfo info = mapper.getQuestionInfoById(100001);
-		System.out.println(info.getContent());
+		List<QuestionInfo> info = mapper.getQuestionByPage(0, 10);
+		System.out.println(info);
 	}
 	
 	@Test

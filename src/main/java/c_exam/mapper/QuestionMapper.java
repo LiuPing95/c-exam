@@ -17,14 +17,16 @@ public interface QuestionMapper {
 	void addQuestion(@Param("obj") QuestionInfo obj);
 
 	QuestionInfo getQuestionInfoById(@Param("id") Integer id);
-	
+
 	List<QuestionInfo> getQuestionByIds(@Param("ids") List<Integer> ids);
-	
+
 	List<Integer> getQuestionIds(@Param("type") String type);
 
-	//根据题型分组
+	// 根据题型分组
 	List<QuestionInfo> getQuestionByPage(@Param("start") int start, @Param("end") int end);
 
 	void batchAdd(List<QuestionInfo> list);
+
+	int getTotal(@Param("type") String type);
 
 }
