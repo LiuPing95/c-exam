@@ -53,11 +53,19 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public List<UserDto> getUserByPage(int pageNum, int pageSize) {
-		return null;
+		return userMapper.getUsers((pageNum-1) * pageSize, pageNum * pageSize);
 	}
 
 	public void updateUser(UserDto user) {
 		
+	}
+
+	public void add(UserInfo user) {
+		userMapper.addUser(user);
+	}
+
+	public void updateCurUser(UserInfo user) {
+		userMapper.updateCurUser(user);
 	}
 
 }

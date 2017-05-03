@@ -45,6 +45,13 @@ public class LoginController {
 	public ModelAndView showInfo() {
 		return new ModelAndView("index").addObject("content", "currUser");
 	}
+	
+	@RequestMapping("updateCurUser")
+	public String updateCurUser(UserInfo user) {
+		userService.updateCurUser(user);
+		return "redirect:/index";
+		
+	}
 
 	@RequestMapping("/h/h/loginIn")
 	@ResponseBody

@@ -1,12 +1,24 @@
 <form #if($action == 'edit') action="$!{rc.contextPath}/bus/user/edit" #else action="$!{rc.contextPath}/bus/user/add" #end
         method="post" class="am-form" data-am-validator>
-  #if($action == 'edit')
-    <input type="hidden" name="id" value="$!{user.id}" />
-  #end
-  <fieldset>
+  	#if($action == 'edit')
+    	<input type="hidden" name="id" value="$!{user.id}" />
+  	#end
+  	<div class="am-cf am-padding">
+			<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">添加用户</strong></div>
+	  	</div>
+  	<fieldset>
+  	#if($!{user.roleName} == "管理员")
     <div class="am-form-group">
-      <label for="roleName">角色</label><input type="text" id="roleName" name="roleName" value="$!{user.roleName}" readonly="readonly" required/>
+      	<div class="am-form-group">
+	  		<label for="roleName">角色 </label><br/>
+	  		<select name="roleName" id="roleName" required>
+	  			#foreach($role in $!{roles})
+		        <option value="$!{role.id}" #if($!{role.name}==$!{user.roleName})selected#end>$!{role.name}</option>
+		        #end
+	      	</select>
+    	</div>
     </div>
+    #end
     <div class="am-form-group">
       <label for="name">姓名</label><input type="text" id="name" name="name" value="$!{user.name}" required/>
     </div>
@@ -58,8 +70,3 @@
 	</div>
   </fieldset>
 </form>
-<script>
-	$(function(){
-		if(#!{user.})
-	});
-</script>

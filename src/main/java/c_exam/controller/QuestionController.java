@@ -1,7 +1,9 @@
 package c_exam.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,13 +31,23 @@ public class QuestionController {
 	private QuestionService questionService;
 	
 	@RequestMapping("list")
-	public ModelAndView list() {
-		return new ModelAndView("index").addObject("content", "question").addObject("page", questionService.getQuestionByPage(1, 10));
+	public ModelAndView list(Page<QuestionInfo> page, String type) {
+		if(page == null) {
+			page = new Page<QuestionInfo>();
+		}
+		page.setData(questionService.getQuestionByPage(page.getPageNum(), page.getPageSize()));
+		int total =questionService.getTotal(type);
+		int totalPage = total / page.getPageSize();
+		page.setTotal(total);
+		page.setTotalPage(total % page.getPageSize() > 0 ? totalPage +1 : totalPage);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("content", "question");
+		map.put("page", page);
+		return new ModelAndView("index").addAllObjects(map);
 	}
 	
 	@RequestMapping("import")
 	public String importTemplate(@RequestParam("file") CommonsMultipartFile file, RedirectAttributes attr) {
-		attr.addAttribute("action", "search");
 		try {
 			String[][] data = ExcelUtil.getData(file.getInputStream(), 0);
 			if (data == null || data.length == 0) {
@@ -74,6 +86,6 @@ public class QuestionController {
 		} catch (Exception e) {
 
 		}
-		return "redirect:/bus/gameCoinSend/list";
+		return "redirect:/question/list";
 	}
 }

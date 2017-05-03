@@ -32,4 +32,8 @@ public interface PermissionMapper {
 
 	List<PermissionInfo> getAll();
 
+	List<PermissionInfo> getRemainPermission(@Param("ids") List<Integer> ids);
+
+	void del(@Param("id") Integer id);
+
 }

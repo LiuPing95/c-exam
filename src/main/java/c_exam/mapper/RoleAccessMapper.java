@@ -20,4 +20,6 @@ public interface RoleAccessMapper {
 	
 	List<Integer> getPermissionIdByRoleId(@Param("roleId") int roleId);
 
+	void del(@Param("roleId") int roleId, @Param("permissionId") int permissionId);
+
 }

@@ -1,24 +1,22 @@
 <form action="" method="post" id="pageForm" style="width:100%">
   	<div class="admin-content-body">
 	  	<div class="am-cf am-padding">
-			<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">题目信息</strong></div>
+			<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">考试场次信息</strong></div>
 	  	</div>
 	  	<div class="am-cf am-padding">
-	  		<input class="am-btn am-btn-primary" value="添加权限" onclick="window.location.href='$!{rc.contextPath}/permission/toEdit?action=add'"/>
+	  		<input class="am-btn am-btn-primary" value="添加考试场次" onclick="window.location.href='$!{rc.contextPath}/'"/>
   		</div>
 	    <div class="am-u-sm-12">
 	  		<table class="am-table am-table-bd am-table-striped admin-content-table">
 	        <thead>
 	        <tr>
-          		<th>ID</th><th>权限名</th><th>权限路径</th><th>权限描述</th><th>添加时间</th><th>管理</th>
+          		<th>ID</th><th>考试场次</th><th>添加时间</th><th>管理</th>
         	</tr>
         	</thead>
         	<tbody>
         	#foreach($item in $!{list})
             <tr>
         	  	<td>$!{item.id}</td>
-        	  	<td>$!{item.name}</td>
-        	  	<td>$!{item.url}</td>
         	  	<td>$!{item.forDesc}</td>
         	  	<td>$!{item.createTime}</td>
               	<td>
@@ -26,7 +24,7 @@
                   	<button class="am-btn am-btn-default am-btn-xs am-dropdown-toggle" data-am-dropdown-toggle><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
                   	<ul class="am-dropdown-content">
                     	<li><a href="javascript:window.location.href='$!{rc.contextPath}/permission/toEdit?action=edit&id=$!{item.id}'">修改</a></li>
-                    	<li><a href="javascript:window.location.href='$!{rc.contextPath}/permission/del?id=$!{item.id}'">删除</a></li>
+                    	<li><a href="javascript:del($!{item.id})">删除</a></li>
                   	</ul>
                 </div>
               	</td>
@@ -49,7 +47,7 @@
 	function del(id) {
 		$.ajax({
 		    type : 'post',
-		    url : '$!{rc.contextPath}/permission/del',
+		    url : '$!{rc.contextPath}/permission/h/h/del',
 		    data : {
 		        id : id
 		    },

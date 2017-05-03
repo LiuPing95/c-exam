@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="addRoleAccess">
 		insert into roleAccessInfo (
-			id, roleId, permissionId, createTime
+			id, roleId, pemissionId, createTime
 		)
 		values (
 			seq_for_roleAccessInfo.nextval,
@@ -17,8 +17,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
+	<delete id="del">
+		delete from roleAccessInfo where roleId = #{roleId} and pemissionId = #{permissionId} 
+	</delete>
+	
 	<select id="getPermissionIdByRoleId"  resultType="int">
-		select id from roleAccessInfo where roleId = #{roleId}
+		select pemissionId from roleAccessInfo where roleId = #{roleId}
 	</select>
 	
 </mapper>

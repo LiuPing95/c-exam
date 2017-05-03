@@ -28,4 +28,6 @@ public interface ExamQuestionTypeMapper {
 	 * @return
 	 * */
 	List<ExamQuestionType> getExamQuestionTypeByExamId(@Param("examId") Integer examId);
+
+	List<ExamQuestionType> getAll();
 }

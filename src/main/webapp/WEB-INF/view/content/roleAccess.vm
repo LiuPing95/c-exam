@@ -1,0 +1,69 @@
+<form action="" method="post" id="pageForm" style="width:100%">
+  	<div class="admin-content-body">
+	  	<div class="am-cf am-padding">
+			<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">#if($!{action} == "auth") 未拥有的权限 #elseif($!{action} == "unauth") 拥有的权限 #end</strong></div>
+	  	</div>
+	  	<div class="am-cf am-padding">
+	  		<input class="am-btn am-btn-primary" #if($!{action} == "auth") value="确认授权" #elseif($!{action} == "unauth") value="取消授权" #end onclick="authorize('$!{action}')"/>
+  		</div>
+	    <div class="am-u-sm-12">
+	  		<table class="am-table am-table-bd am-table-striped admin-content-table">
+	        <thead>
+	        <tr>
+          		<th><input type="checkbox" name="ctrl" id="ctrl"/></th><th>ID</th><th>权限名</th><th>权限描述</th>
+        	</tr>
+        	</thead>
+        	<tbody>
+        	#foreach($item in $!{permission})
+            <tr>
+            	<td><input type="checkbox" name="selectIdArray" value="$!{item.id}"/></td>
+        	  	<td>$!{item.id}</td>
+        	  	<td>$!{item.name}</td>
+        	  	<td>$!{item.forDesc}</td>
+            </tr>
+        #end
+        </tbody>
+      	</table>
+    	</div>
+	</div>
+</form>
+<script>
+	$("#ctrl").click(function(){
+      	if(this.checked){
+        	$("input[type=checkbox]").prop("checked", true);
+      	} else {
+        	$("input[type=checkbox]").prop("checked", false);
+      	}
+    });
+    
+    function authorize(action) {
+    	var s = '';
+      	$('input[name="selectIdArray"]:checked').each(function(){s+=$(this).val()+'_';});
+      	if(s === ''){
+        	return;
+      	}
+      	if(s.length > 0){
+        	s = s.substring(0,s.length-1);
+      	}
+      	debugger;
+      	$.ajax({
+		    type : 'post',
+		    url : "$!{rc.contextPath}/roleAccess/h/h/authorize",
+		    data : {
+		    	action : action,
+		        ids : s,
+		        roleId : $!{roleId}
+		    },
+		    cache : false,
+		    dataType:'json',
+		    error : function (data) {},
+		    success : function (data) {
+		      	if(data == true){
+					window.location.href="$!{rc.contextPath}/roleAccess/list?roleId=$!{roleId}&action=$!{action}"
+		      	}else{
+		      	
+		      	}
+		    }
+		});
+    }
+</script>

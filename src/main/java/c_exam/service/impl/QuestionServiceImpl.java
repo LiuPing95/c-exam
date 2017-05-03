@@ -20,11 +20,8 @@ public class QuestionServiceImpl implements QuestionService {
 	@Autowired
 	private QuestionMapper mapper;
 
-	public Page<QuestionInfo> getQuestionByPage(int pageNum, int pageSize) {
-		Page<QuestionInfo> page = new Page<QuestionInfo>();
-		page.setData(mapper.getQuestionByPage((pageNum - 1) * pageSize, pageSize));
-		page.setTotalPage(mapper.getTotal(null) / pageSize);
-		return page;
+	public List<QuestionInfo> getQuestionByPage(int pageNum, int pageSize) {
+		return mapper.getQuestionByPage((pageNum - 1) * pageSize, pageSize);
 	}
 
 	public int getTotal(String type) {

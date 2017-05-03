@@ -1,11 +1,12 @@
 package c_exam.service;
 
+import java.util.List;
+
 import c_exam.pojo.dao.QuestionInfo;
-import c_exam.util.Page;
 
 public interface QuestionService {
 
-	Page<QuestionInfo> getQuestionByPage(int pageNum, int pageSize);
+	List<QuestionInfo> getQuestionByPage(int pageNum, int pageSize);
 
 	int getTotal(String type);
 	

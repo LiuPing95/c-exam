@@ -19,4 +19,6 @@ public interface RoleMapper {
 	RoleInfo getRoleInfoById(@Param("id") Integer id);
 	
 	List<RoleInfo> getRoleByPage(@Param("start") Integer start, @Param("end") Integer end);
+
+	List<RoleInfo> getRoles();
 }

@@ -27,4 +27,24 @@ public class PermissionServiceImpl implements PermissionService {
 		return mapper.getAll();
 	}
 
+	public void add(PermissionInfo obj) {
+		mapper.addPermission(obj);
+	}
+
+	public List<PermissionInfo> getRemainPermission(List<Integer> ids) {
+		return mapper.getRemainPermission(ids);
+	}
+
+	public void del(Integer id) {
+		mapper.del(id);
+	}
+
+	public void update(PermissionInfo obj) {
+
+	}
+
+	public PermissionInfo getById(Integer id) {
+		return mapper.getPermissionById(id);
+	}
+
 }

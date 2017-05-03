@@ -20,4 +20,8 @@ public interface ExamSerialMapper {
 	
 	List<ExamSerialInfo> getExamSerialInfo(@Param("start") Integer start, @Param("end") Integer end);
 
+	List<ExamSerialInfo> getAll();
+
+	void del(Integer id);
+
 }

@@ -17,6 +17,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
+	<select id="getRoles" resultType="RoleInfo">
+		select * from roleInfo
+	</select>
+	
 	<select id="getRoleInfoById" resultType="RoleInfo">
 		select * from roleInfo where id = #{id}
 	</select>

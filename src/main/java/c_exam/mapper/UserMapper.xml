@@ -27,6 +27,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
+	<update id="updateCurUser">
+		update userInfo set
+		pwd = #{user.pwd},
+		phone = #{user.phone},
+		sign = #{user.sign},
+		idCard = #{user.idCard},
+		birthday = #{user.birthday}
+		where id = #{user.id}
+	</update>
+	
 	<select id="userLogin" resultType="UserInfo">
 		select * from userInfo
 		where pwd = #{user.pwd}
@@ -45,12 +55,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from userInfo where id = #{id}
 	</select>
 	
-	<select id="getUsers" resultType="UserInfo">
+	<select id="getUsers" resultType="c_exam.pojo.dto.UserDto">
 		select * 
 		from
 			(select u.*,rownum rn 
 			from
-				(select * from userInfo) u
+				(select a.id,a.college,a.phone,a.gender,a.name,b.name className,c.name deptName from userInfo a,classInfo b,deptInfo c where a.classId=b.id and a.deptId=c.id) u
 			where #{end} >= rownum)
 		where rn > #{start}
 	</select>

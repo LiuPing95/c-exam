@@ -9,5 +9,15 @@ public interface PermissionService {
 	List<PermissionInfo> getByIds(List<Integer> list);
 
 	List<PermissionInfo> getAll();
-	
+
+	void add(PermissionInfo obj);
+
+	List<PermissionInfo> getRemainPermission(List<Integer> ids);
+
+	void del(Integer id);
+
+	void update(PermissionInfo obj);
+
+	PermissionInfo getById(Integer id);
+
 }

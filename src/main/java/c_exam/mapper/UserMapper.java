@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import c_exam.pojo.dao.UserInfo;
+import c_exam.pojo.dto.UserDto;
 
 /**
  * @author LiuPing
@@ -16,12 +17,13 @@ public interface UserMapper {
 
 	/**
 	 * 分页查询数据，TODO：后面还要支持多条件分页查询
+	 * 
 	 * @param pageNum
 	 * @param pageSize
 	 * @return
 	 */
-	List<UserInfo> getUsers(@Param("start") Integer start, @Param("end") Integer end);
-	
+	List<UserDto> getUsers(@Param("start") Integer start, @Param("end") Integer end);
+
 	/**
 	 * 根据userId精确查找用户
 	 * 
@@ -37,4 +39,11 @@ public interface UserMapper {
 	 * @return
 	 */
 	UserInfo userLogin(@Param("user") UserInfo user);
+
+	/**
+	 * 更新当前登录用户的信息
+	 * 
+	 * @param user
+	 */
+	void updateCurUser(@Param("user") UserInfo user);
 }
