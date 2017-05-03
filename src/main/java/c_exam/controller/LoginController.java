@@ -26,30 +26,26 @@ import c_exam.util.UserConstant;
 @Controller
 @RequestMapping("/")
 public class LoginController {
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private RoleAccessService roleAccessService;
-	
+
 	@Autowired
 	private PermissionService permissionService;
-	
+
 	@RequestMapping("index")
-	public ModelAndView index(HttpServletRequest request) {
-		UserDto user = (UserDto) request.getSession().getAttribute(UserConstant.CUR_USER);
-		@SuppressWarnings("unchecked")
-		List<PermissionInfo> list = (List<PermissionInfo>) request.getSession().getAttribute(UserConstant.CUR_PERMISSION);
-		return new ModelAndView("index").addObject("content", "cover").addObject("permissions", list).addObject("user", user);
+	public ModelAndView index() {
+		return new ModelAndView("index").addObject("content", "cover");
 	}
-	
+
 	@RequestMapping("info")
-	public ModelAndView showInfo(HttpServletRequest request) {
-		UserDto user = (UserDto) request.getSession().getAttribute(UserConstant.CUR_USER);
-		return new ModelAndView("index").addObject("content", "userEdit").addObject("user", user);
+	public ModelAndView showInfo() {
+		return new ModelAndView("index").addObject("content", "currUser");
 	}
-	
+
 	@RequestMapping("/h/h/loginIn")
 	@ResponseBody
 	public boolean loginIn(HttpServletRequest request) {
@@ -57,14 +53,14 @@ public class LoginController {
 		String pwd = request.getParameter("pwd");
 		UserInfo user = new UserInfo();
 		user.setPwd(pwd);
-		if(userName.length() == 11) {
+		if (userName.length() == 11) {
 			user.setPhone(userName);
 		}
-		if(userName.length() == 18) {
+		if (userName.length() == 18) {
 			user.setIdCard(userName);
 		}
 		try {
-			if(userName.length() == 6) {
+			if (userName.length() == 6) {
 				// 如果这里出现异常说明不是数字
 				user.setId(Integer.parseInt(userName));
 			}
@@ -73,7 +69,7 @@ public class LoginController {
 		}
 		// 查询是否存在这个用户
 		UserDto loginUser = userService.userLogin(user);
-		if(loginUser == null) {
+		if (loginUser == null) {
 			return false;
 		}
 		// 用户存在的话查出这个用户拥有的权限
@@ -81,14 +77,14 @@ public class LoginController {
 		List<PermissionInfo> permissions = permissionService.getByIds(ids);
 		request.getSession().setAttribute(UserConstant.CUR_USER, loginUser);
 		request.getSession().setAttribute(UserConstant.CUR_PERMISSION, permissions);
+		request.getSession().setMaxInactiveInterval(120 * 60);
 		return true;
 	}
-	
-	@RequestMapping(value = {"loginOut", "login"})
-	public ModelAndView loginOut(HttpServletRequest request) {
-		request.getSession().removeAttribute(UserConstant.CUR_USER);
-		request.getSession().removeAttribute(UserConstant.CUR_PERMISSION);
-		return new ModelAndView("login");
+
+	@RequestMapping(value = { "loginOut", "login" })
+	public String loginOut(HttpSession session) {
+		session.invalidate();
+		return "login";
 	}
-	
+
 }
