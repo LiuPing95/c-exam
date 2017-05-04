@@ -41,6 +41,7 @@ public class ExamController {
 		if("edit".equals(action)){
 			map.put("serial", serialService.getById(id));
 		}
+		map.put("action", action);
 		return new ModelAndView("index").addAllObjects(map);
 	}
 	

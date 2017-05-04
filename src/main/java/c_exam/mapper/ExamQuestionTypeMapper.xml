@@ -18,6 +18,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
+	<delete id="del">
+		delete from examQuestionType where id = #{id}
+	</delete>
+	
 	<select id="getAll" resultType="ExamQuestionType">
 		select * from examQuestionType
 	</select>

@@ -23,6 +23,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
+	<select id="getTypes" resultType="String">
+		select questionType from questionInfo group by questionType
+	</select>
+	
 	<select id="getQuestionInfo" resultType="QuestionInfo">
 		select * from questionInfo where id = #{id}
 	</select>
@@ -42,9 +46,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from(
 			select c.*,rownum rn 
 			from (select * from questionInfo) c
-			where rownum > #{start}
+			where #{end} >= rownum
 		)
-		where #{end} >= rn
+		where rn > #{start}
 	</select>
 	
 	<select id="getTotal" resultType="int">

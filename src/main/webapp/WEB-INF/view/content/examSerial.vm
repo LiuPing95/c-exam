@@ -4,7 +4,7 @@
 			<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">考试场次信息</strong></div>
 	  	</div>
 	  	<div class="am-cf am-padding">
-	  		<input class="am-btn am-btn-primary" value="添加考试场次" onclick="window.location.href='$!{rc.contextPath}/'"/>
+	  		<input class="am-btn am-btn-primary" value="添加考试场次" onclick="window.location.href='$!{rc.contextPath}/examSerial/toEdit?action=add'"/>
   		</div>
 	    <div class="am-u-sm-12">
 	  		<table class="am-table am-table-bd am-table-striped admin-content-table">

@@ -11,4 +11,8 @@ import c_exam.pojo.dao.ExamQuestionType;
 public interface ExamQuestionTypeService {
 
 	List<ExamQuestionType> getAll();
+
+	void addType(ExamQuestionType obj);
+
+	void del(Integer id);
 }

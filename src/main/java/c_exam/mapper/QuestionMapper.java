@@ -29,4 +29,6 @@ public interface QuestionMapper {
 
 	int getTotal(@Param("type") String type);
 
+	List<String> getTypes();
+
 }

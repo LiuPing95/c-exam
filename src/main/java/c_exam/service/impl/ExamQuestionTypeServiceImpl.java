@@ -23,4 +23,12 @@ public class ExamQuestionTypeServiceImpl implements ExamQuestionTypeService {
 		return typeMapper.getAll();
 	}
 
+	public void addType(ExamQuestionType obj) {
+		typeMapper.addExamQuestionType(obj);
+	}
+
+	public void del(Integer id) {
+		typeMapper.del(id);
+	}
+
 }

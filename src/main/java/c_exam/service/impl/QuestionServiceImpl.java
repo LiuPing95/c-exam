@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import c_exam.mapper.QuestionMapper;
 import c_exam.pojo.dao.QuestionInfo;
 import c_exam.service.QuestionService;
-import c_exam.util.Page;
 
 /**
  * @author LiuPing
@@ -21,11 +20,15 @@ public class QuestionServiceImpl implements QuestionService {
 	private QuestionMapper mapper;
 
 	public List<QuestionInfo> getQuestionByPage(int pageNum, int pageSize) {
-		return mapper.getQuestionByPage((pageNum - 1) * pageSize, pageSize);
+		return mapper.getQuestionByPage((pageNum - 1) * pageSize, pageNum * pageSize);
 	}
 
 	public int getTotal(String type) {
 		return mapper.getTotal(type);
+	}
+
+	public List<String> getTypes() {
+		return mapper.getTypes();
 	}
 
 }

@@ -9,5 +9,7 @@ public interface QuestionService {
 	List<QuestionInfo> getQuestionByPage(int pageNum, int pageSize);
 
 	int getTotal(String type);
+
+	List<String> getTypes();
 	
 }
