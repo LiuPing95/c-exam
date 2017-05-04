@@ -25,8 +25,6 @@ public interface QuestionMapper {
 	// 根据题型分组
 	List<QuestionInfo> getQuestionByPage(@Param("start") int start, @Param("end") int end);
 
-	void batchAdd(List<QuestionInfo> list);
-
 	int getTotal(@Param("type") String type);
 
 	List<String> getTypes();
