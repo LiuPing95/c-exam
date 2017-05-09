@@ -17,4 +17,8 @@ public interface ExamSerialService {
 	void add(ExamSerialInfo obj);
 
 	void del(Integer id);
+
+	void forUse(Integer id);
+
+	ExamSerialInfo getCur();
 }

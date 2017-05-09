@@ -1,0 +1,52 @@
+<form #if($action == 'edit') action="$!{rc.contextPath}/question/edit" #else action="$!{rc.contextPath}/question/add" #end
+        method="post" class="am-form" data-am-validator>
+  	#if($action == 'edit')
+    	<input type="hidden" name="id" value="$!{question.id}" />
+  	#end
+  	<fieldset>
+  	#if($action == 'add')
+    <div class="am-form-group">
+      	<div class="am-form-group">
+	  		<label for="questionType">题型</label><br/>
+	  		<select name="questionType" id="questionType" required>
+	  			#foreach($type in $!{types})
+		        <option value="$!{type}" #if($!{type}==$!{typeName})selected#end>$!{type}</option>
+		        #end
+	      	</select>
+    	</div>
+    </div>
+   	#else
+   	<div class="am-form-group">
+      	<label for="questionType">题型</label><input type="text" id="questionType" name="questionType" value="$!{question.questionType}" required/>
+    </div>
+  	#end
+    <div class="am-form-group">
+      	<label for="content">内容</label><input type="text" id="content" name="content" value="$!{question.content}" required/>
+    </div>
+    <div class="am-form-group">
+      	<label for="forComment">解析</label><input type="text" id="forComment" name="forComment" value="$!{question.forComment}" required/>
+    </div>
+    <div class="am-form-group">
+      	<label for="answer">答案</label><input type="text" id="answer" name="answer" value="$!{question.answer}" required/>
+    </div>
+    <div class="am-form-group">
+      	<label for="itemA">选项A</label><input type="text" id="itemA" name="itemA" value="$!{question.itemA}" required/>
+    </div>
+    <div class="am-form-group">
+      	<label for="itemB">选项B</label><input type="text" id="itemB" name="itemB" value="$!{question.itemB}" required/>
+    </div>
+    <div class="am-form-group">
+      	<label for="itemC">选项C</label><input type="text" id="itemC" name="itemC" value="$!{question.itemC}" required/>
+    </div>
+    <div class="am-form-group">
+      	<label for="itemD">选项D</label><input type="text" id="itemD" name="itemD" value="$!{question.itemD}" required/>
+    </div>
+    <div class="am-cf">
+		<button class="am-btn am-btn-primary am-round am-fl" type="submit">#if($action == 'edit') 保存 #else 添加 #end</button>
+	  	<button class="am-btn am-btn-success am-round am-fr" type="button" onclick="window.location.href='$!{rc.contextPath}/question/list'">返回</button>
+	</div>
+  	</fieldset>
+</form>
+<script>
+	
+</script>

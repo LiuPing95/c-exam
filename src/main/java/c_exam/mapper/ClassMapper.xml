@@ -17,6 +17,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
+	<select id="getClasses" resultType="ClassInfo">
+		select * from classInfo
+	</select>
+	
 	<select id="getClassInfoById" resultType="ClassInfo">
 		select * from classInfo where id = #{id}
 	</select>

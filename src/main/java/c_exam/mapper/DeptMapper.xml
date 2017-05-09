@@ -20,6 +20,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from deptInfo where id = #{id}
 	</select>
 	
+	<select id="getDepts" resultType="DeptInfo">
+		select * from deptInfo
+	</select>
+	
 	<select id="getDeptInfo" resultType="DeptInfo">
 		select * 
 		from 

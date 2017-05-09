@@ -73,12 +73,11 @@ public class ExamQuestionTypeController {
 	 * @return
 	 */
 	@RequestMapping("generate")
-	public ModelAndView generate(Integer examId) {
-		Map<String, List<QuestionInfo>> map = genService.generateQuestionIds(examId);
-		Map<String, Object> modelMap = new HashMap<String, Object>();
-		modelMap.putAll(map);
-		modelMap.put("content", "exam");
-		modelMap.put("", "");
-		return new ModelAndView("index").addAllObjects(modelMap);
+	public ModelAndView generate() {
+		List<QuestionInfo> list = genService.generateQuestions();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("content", "exam");
+		map.put("questions", list);
+		return new ModelAndView("index").addAllObjects(map);
 	}
 }

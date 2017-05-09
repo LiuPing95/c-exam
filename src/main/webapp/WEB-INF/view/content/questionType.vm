@@ -14,7 +14,12 @@
         	<tbody>
         	#foreach($item in $!{types})
             <tr>
-        	  	<td>$!{item}</td>
+        	  	<td>
+        	  		#if($!{item}=="CHOOSE") 选择题 
+        	  		#elseif($!{item}=="BLANK") 填空题 
+        	  		#elseif($!{item}=="PROGRESS") 程序题 
+        	  		#end
+        	  	</td>
         	  	<td><input type="number" min="0" id="typeNum" required /></td>
               	<td>
                 <div class="am-dropdown" data-am-dropdown>
@@ -29,7 +34,7 @@
         </tbody>
       	</table>
       	<div class="am-cf am-padding">
-	  		<input class="am-btn am-btn-primary" value="生成考试试卷" onclick="window.location.href='$!{rc.contextPath}/examSerial/toEdit?action=add'"/>
+	  		<input class="am-btn am-btn-primary" value="生成考试试卷" onclick="window.location.href='$!{rc.contextPath}/questionType/generate'"/>
   		</div>
 	  		<table class="am-table am-table-bd am-table-striped admin-content-table">
 	        <thead>
@@ -40,7 +45,12 @@
         	<tbody>
         	#foreach($item in $!{examTypes})
             <tr>
-        	  	<td>$!{item.type}</td>
+            	<td>
+        	  		#if($!{item.type}=="CHOOSE") 选择题 
+        	  		#elseif($!{item.type}=="BLANK") 填空题 
+        	  		#elseif($!{item.type}=="PROGRESS") 程序题 
+        	  		#end
+        	  	</td>
         	  	<td>$!{item.sum}</td>
               	<td>
                 <div class="am-dropdown" data-am-dropdown>
@@ -51,7 +61,7 @@
                 </div>
               	</td>
             </tr>
-        #end
+        	#end
         </tbody>
       	</table>
       	

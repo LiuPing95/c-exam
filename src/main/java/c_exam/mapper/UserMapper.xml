@@ -27,6 +27,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
+	<delete id="del">
+		delete from userInfo where id = #{id}
+	</delete>
+	
 	<update id="updateCurUser">
 		update userInfo set
 		pwd = #{user.pwd},
@@ -60,7 +64,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from
 			(select u.*,rownum rn 
 			from
-				(select a.id,a.college,a.phone,a.gender,a.name,b.name className,c.name deptName from userInfo a,classInfo b,deptInfo c where a.classId=b.id and a.deptId=c.id) u
+				(select a.id,a.college,a.phone,a.gender,a.name,b.name className,c.name deptName,d.name roleName from userInfo a,classInfo b,deptInfo c,roleInfo d where a.classId=b.id and a.deptId=c.id and a.roleId=d.id) u
 			where #{end} >= rownum)
 		where rn > #{start}
 	</select>

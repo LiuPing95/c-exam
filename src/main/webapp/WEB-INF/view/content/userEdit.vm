@@ -1,24 +1,26 @@
-<form #if($action == 'edit') action="$!{rc.contextPath}/bus/user/edit" #else action="$!{rc.contextPath}/bus/user/add" #end
+<form #if($action == 'edit') action="$!{rc.contextPath}/user/edit" #else action="$!{rc.contextPath}/user/add" #end
         method="post" class="am-form" data-am-validator>
   	#if($action == 'edit')
     	<input type="hidden" name="id" value="$!{user.id}" />
-  	#end
-  	<div class="am-cf am-padding">
+	  	<div class="am-cf am-padding">
+			<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">修改用户信息</strong></div>
+	  	</div>
+	#elseif($action == 'add')
+		<div class="am-cf am-padding">
 			<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">添加用户</strong></div>
 	  	</div>
+  	#end
   	<fieldset>
-  	#if($!{user.roleName} == "管理员")
     <div class="am-form-group">
       	<div class="am-form-group">
-	  		<label for="roleName">角色 </label><br/>
-	  		<select name="roleName" id="roleName" required>
+	  		<label for="roleId">角色</label><br/>
+	  		<select name="roleId" id="roleId" required>
 	  			#foreach($role in $!{roles})
 		        <option value="$!{role.id}" #if($!{role.name}==$!{user.roleName})selected#end>$!{role.name}</option>
 		        #end
 	      	</select>
     	</div>
     </div>
-    #end
     <div class="am-form-group">
       <label for="name">姓名</label><input type="text" id="name" name="name" value="$!{user.name}" required/>
     </div>
@@ -26,28 +28,32 @@
       <label for="college">学校</label><input type="text" id="college" name="college" value="$!{user.college}" required/>
     </div>
     <div class="am-form-group">
-      <label for="gender">性别 </label><br/>
+      <label for="gender">性别</label><br/>
       <select name="gender" id="gender" required>
         <option value="不详">请选择</option>
         <option value="男" #if($!{user.gender}=="男")selected#end>男</option>
         <option value="女" #if($!{user.gender}=="女")selected#end>女</option>
       </select>
     </div>
-    <div class="am-form-group">
-      <label for="gender">性别 </label><br/>
-      <select name="gender" id="gender" required>
-        <option value="不详">请选择</option>
-        <option value="男" #if($!{user.gender}=="男")selected#end>男</option>
-        <option value="女" #if($!{user.gender}=="女")selected#end>女</option>
-      </select>
+     <div class="am-form-group">
+      	<div class="am-form-group">
+	  		<label for="classId">班级</label><br/>
+	  		<select name="classId" id="classId" required>
+	  			#foreach($class in $!{classes})
+		        <option value="$!{class.id}">$!{class.name}</option>
+		        #end
+	      	</select>
+    	</div>
     </div>
-    <div class="am-form-group">
-      <label for="gender">性别 </label><br/>
-      <select name="gender" id="gender" required>
-        <option value="不详">请选择</option>
-        <option value="男" #if($!{user.gender}=="男")selected#end>男</option>
-        <option value="女" #if($!{user.gender}=="女")selected#end>女</option>
-      </select>
+     <div class="am-form-group">
+      	<div class="am-form-group">
+	  		<label for="deptId">系别</label><br/>
+	  		<select name="deptId" id="deptId" required>
+	  			#foreach($dept in $!{depts})
+		        <option value="$!{dept.id}">$!{dept.name}</option>
+		        #end
+	      	</select>
+    	</div>
     </div>
     <div class="am-form-group">
       <label for="pwd">密码</label><input type="password" id="pwd" name="pwd" value="$!{user.pwd}" required/>
@@ -66,7 +72,7 @@
     </div>
     <div class="am-cf">
 	  <button class="am-btn am-btn-primary am-round am-fl" type="submit">#if($action == 'edit') 保存 #else 添加 #end</button>
-	  <button class="am-btn am-btn-success am-round am-fr" type="button" id="returnListPage">返回</button>
+	  <button class="am-btn am-btn-success am-round am-fr" type="button" onclick="javascript:location.href='$!{rc.contextPath}/user/list'">返回</button>
 	</div>
   </fieldset>
 </form>

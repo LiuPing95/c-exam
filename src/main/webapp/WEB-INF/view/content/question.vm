@@ -4,14 +4,14 @@
 			<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">题目信息</strong></div>
 	  	</div>
 	  	<div class="am-cf am-padding">
-	  		<input class="am-btn am-btn-primary" value="添加题目" onclick="window.location.href='$!{rc.contextPath}/item/toAdd?action=add'"/>
-	  		<input class="am-btn am-btn-primary" value="导入题目" onclick="window.location.href='$!{rc.contextPath}/item/toAdd?action=add'"/>
+	  		<input class="am-btn am-btn-primary" value="添加题目" onclick="window.location.href='$!{rc.contextPath}/question/toEdit?action=add'"/>
+	  		##<input class="am-btn am-btn-primary" value="导入题目" onclick="window.location.href='$!{rc.contextPath}/item/toAdd?action=add'"/>
   		</div>
 	    <div class="am-u-sm-12 am-u-md-3">
-	        <input type="text" name="itemName" class="am-form-field" placeholder="题型">
+	        <input type="text" name="type" class="am-form-field" placeholder="题型">
 	    </div>
 	    <div class="am-u-sm-12 am-u-md-3">
-	        <input type="text" name="className" class="am-form-field" placeholder="内容">
+	        <input type="text" name="content" class="am-form-field" placeholder="内容">
 	    </div>
     	<span class="am-input-group-btn"><button class="am-btn am-btn-default" onclick="pageSubmit()">搜索</button></span>
 	    <div class="am-u-sm-12">
@@ -25,7 +25,12 @@
         	#foreach($item in $!{page.data})
             <tr>
         	  	<td>$!{item.id}</td>
-        	  	<td>#if($!{item.questionType}=="CHOOSE") 选择题 #end</td>
+        	  	<td>
+        	  		#if($!{item.questionType}=="CHOOSE") 选择题 
+        	  		#elseif($!{item.questionType}=="BLANK") 填空题 
+        	  		#elseif($!{item.questionType}=="PROGRESS") 程序题 
+        	  		#end
+        	  	</td>
         	  	<td>$!{item.content}</td>
         	  	<td>$!{item.itemA}</td>
         	  	<td>$!{item.itemB}</td>
@@ -38,8 +43,8 @@
                 <div class="am-dropdown" data-am-dropdown>
                   	<button class="am-btn am-btn-default am-btn-xs am-dropdown-toggle" data-am-dropdown-toggle><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
                   	<ul class="am-dropdown-content">
-                    	<li><a href="javascript:window.location.href='$!{rc.contextPath}/item/toEdit?id=$!{item.itemId}&action=edit'">修改</a></li>
-                    	<li><a href="javascript:del($!{item.itemId})">删除</a></li>
+                    	<li><a href="javascript:window.location.href='$!{rc.contextPath}/question/toEdit?id=$!{item.id}&action=edit'">修改</a></li>
+                    	<li><a href="javascript:window.location.href='$!{rc.contextPath}/question/del?id=$!{item.id}'">删除</a></li>
                   	</ul>
                 </div>
               	</td>

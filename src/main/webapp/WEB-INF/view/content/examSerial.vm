@@ -10,7 +10,7 @@
 	  		<table class="am-table am-table-bd am-table-striped admin-content-table">
 	        <thead>
 	        <tr>
-          		<th>ID</th><th>考试场次</th><th>添加时间</th><th>管理</th>
+          		<th>ID</th><th>考试场次</th><th>状态</th><th>添加时间</th><th>管理</th>
         	</tr>
         	</thead>
         	<tbody>
@@ -18,12 +18,14 @@
             <tr>
         	  	<td>$!{item.id}</td>
         	  	<td>$!{item.forDesc}</td>
+        	  	<td>#if($!{item.status} == "1") 使用中 #elseif($!{item.status} == "0") 未使用 #end</td>
         	  	<td>$!{item.createTime}</td>
               	<td>
                 <div class="am-dropdown" data-am-dropdown>
                   	<button class="am-btn am-btn-default am-btn-xs am-dropdown-toggle" data-am-dropdown-toggle><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
                   	<ul class="am-dropdown-content">
-                    	<li><a href="javascript:window.location.href='$!{rc.contextPath}/permission/toEdit?action=edit&id=$!{item.id}'">修改</a></li>
+                    	<li><a href="javascript:window.location.href='$!{rc.contextPath}/examSerial/toEdit?action=edit&id=$!{item.id}'">修改</a></li>
+                    	<li><a href="javascript:window.location.href='$!{rc.contextPath}/examSerial/forUse?id=$!{item.id}'">使用</a></li>
                     	<li><a href="javascript:del($!{item.id})">删除</a></li>
                   	</ul>
                 </div>

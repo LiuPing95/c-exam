@@ -19,16 +19,28 @@ public class QuestionServiceImpl implements QuestionService {
 	@Autowired
 	private QuestionMapper mapper;
 
-	public List<QuestionInfo> getQuestionByPage(int pageNum, int pageSize) {
-		return mapper.getQuestionByPage((pageNum - 1) * pageSize, pageNum * pageSize);
-	}
-
-	public int getTotal(String type) {
-		return mapper.getTotal(type);
+	public int getTotal(String type, String content) {
+		return mapper.getTotal(type, content);
 	}
 
 	public List<String> getTypes() {
 		return mapper.getTypes();
+	}
+
+	public void add(QuestionInfo obj) {
+		mapper.addQuestion(obj);
+	}
+
+	public List<QuestionInfo> getQuestionByPage(int pageNum, int pageSize, String type, String content) {
+		return mapper.getQuestionByPage((pageNum - 1) * pageSize, pageNum * pageSize, type, content);
+	}
+
+	public void del(Integer id) {
+		mapper.del(id);
+	}
+
+	public List<QuestionInfo> getQuestionByIds(List<Integer> ids) {
+		return mapper.getQuestionByIds(ids);
 	}
 
 }

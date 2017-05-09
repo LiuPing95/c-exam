@@ -31,4 +31,6 @@ public interface ClassMapper {
 	 * @return 符合条件的班级信息
 	 */
 	List<ClassInfo> getClassInfo(@Param("start") Integer start, @Param("end") Integer end);
+
+	List<ClassInfo> getClasses();
 }

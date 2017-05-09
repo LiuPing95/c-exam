@@ -35,4 +35,13 @@ public class ExamSerialServiceImpl implements ExamSerialService {
 		serialMapper.del(id);
 	}
 
+	public void forUse(Integer id) {
+		serialMapper.use(id);
+		serialMapper.cancel(id);
+	}
+
+	public ExamSerialInfo getCur() {
+		return serialMapper.getCur();
+	}
+
 }

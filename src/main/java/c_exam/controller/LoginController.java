@@ -11,13 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import c_exam.pojo.dao.ExamSerialInfo;
 import c_exam.pojo.dao.PermissionInfo;
 import c_exam.pojo.dao.UserInfo;
 import c_exam.pojo.dto.UserDto;
+import c_exam.service.ExamInfoService;
+import c_exam.service.ExamSerialService;
 import c_exam.service.PermissionService;
 import c_exam.service.RoleAccessService;
 import c_exam.service.UserService;
-import c_exam.util.UserConstant;
+import c_exam.util.AppConstant;
 
 /**
  * @author LiuPing
@@ -29,6 +32,12 @@ public class LoginController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ExamSerialService examSerialService;
+	
+	@Autowired
+	private ExamInfoService examService;
 
 	@Autowired
 	private RoleAccessService roleAccessService;
@@ -81,10 +90,14 @@ public class LoginController {
 		}
 		// 用户存在的话查出这个用户拥有的权限
 		List<Integer> ids = roleAccessService.getPermissionIdsByRoleId(loginUser.getRoleId());
-		List<PermissionInfo> permissions = permissionService.getByIds(ids);
-		request.getSession().setAttribute(UserConstant.CUR_USER, loginUser);
-		request.getSession().setAttribute(UserConstant.CUR_PERMISSION, permissions);
+		List<PermissionInfo> permissions = permissionService.getByIds(ids.size() <= 0 ? null : ids);
+		request.getSession().setAttribute(AppConstant.CUR_USER, loginUser);
+		request.getSession().setAttribute(AppConstant.CUR_PERMISSION, permissions);
 		request.getSession().setMaxInactiveInterval(120 * 60);
+		// TODO：这个应该是在服务器启动的时候设置进去的，而不是在登录的时候，不过也可以这样
+		ExamSerialInfo serialInfo = examSerialService.getCur();
+		request.getSession().setAttribute(AppConstant.CUR_EXAM, serialInfo);
+		request.getSession().setAttribute(AppConstant.CUR_QUESTION, examService.getQuestionIdsByExamId(serialInfo.getId()));
 		return true;
 	}
 

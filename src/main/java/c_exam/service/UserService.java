@@ -18,5 +18,7 @@ public interface UserService {
 	void add(UserInfo user);
 
 	void updateCurUser(UserInfo user);
+
+	void del(Integer id);
 	
 }

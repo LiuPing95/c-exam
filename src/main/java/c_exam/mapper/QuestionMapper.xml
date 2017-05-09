@@ -23,6 +23,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
+	<delete id="del">
+		delete from questionInfo where id = #{id}
+	</delete>
+	
 	<select id="getTypes" resultType="String">
 		select questionType from questionInfo group by questionType
 	</select>
@@ -31,7 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from questionInfo where id = #{id}
 	</select>
 	
-	<select id="getQuestionIds">
+	<select id="getQuestionIds" resultType="int">
 		select id from questionInfo where questionType = #{type}
 	</select>
 	
@@ -47,14 +51,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			select c.*,rownum rn 
 			from (select * from questionInfo) c
 			where #{end} >= rownum
+			<if test="type != null"> and questionType = #{type}</if>
+			<if test="content != null"> and content like '%'||#{content}||'%'</if>
 		)
-		where rn > #{start}
+		where rn > #{start} 
 	</select>
 	
 	<select id="getTotal" resultType="int">
-		select count(id) from questionInfo
-		<if test="type != null">
-			where questionType = #{type}
-		</if>
+		select count(id) from questionInfo where 1=1
+		<if test="type != null"> and questionType = #{type}</if>
+		<if test="content != null"> and content like '%'||#{content}||'%'</if>
 	</select>
 </mapper>

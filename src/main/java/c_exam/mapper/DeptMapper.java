@@ -20,4 +20,6 @@ public interface DeptMapper {
 
 	List<DeptInfo> getDeptInfo(@Param("start") Integer start, @Param("end") Integer end);
 
+	List<DeptInfo> getDepts();
+
 }

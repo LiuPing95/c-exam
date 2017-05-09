@@ -5,19 +5,19 @@
   	</div>
   	<fieldset>
     <div class="am-form-group">
-      	<label for="name">姓名</label><input type="text" name="name" value="$!{currentUser.name}" readonly="readonly" required/>
+      	<label for="name">姓名</label><input type="text" name="name" value="$!{currentUser.name}" readonly="readonly"/>
     </div>
     <div class="am-form-group">
-      	<label for="college">学校</label><input type="text" name="college" value="$!{currentUser.college}" readonly="readonly" required/>
+      	<label for="college">学校</label><input type="text" name="college" value="$!{currentUser.college}" readonly="readonly"/>
     </div>
     <div class="am-form-group">
-      	<label for="deptName">系别</label><input type="text" name="deptName" value="$!{currentUser.deptName}" readonly="readonly" required/>
+      	<label for="deptName">系别</label><input type="text" name="deptName" value="$!{currentUser.deptName}" readonly="readonly"/>
     </div>
     <div class="am-form-group">
-      	<label for="className">班级</label><input type="text" name="className" value="$!{currentUser.className}" readonly="readonly" required/>
+      	<label for="className">班级</label><input type="text" name="className" value="$!{currentUser.className}" readonly="readonly"/>
     </div>
     <div class="am-form-group">
-      	<label for="gender">性别</label><input type="text" name="gender" value="$!{currentUser.gender}" readonly="readonly" required/>
+      	<label for="gender">性别</label><input type="text" name="gender" value="$!{currentUser.gender}" readonly="readonly"/>
     </div>
     <div class="am-form-group">
       <label for="pwd">密码</label><input type="password" name="pwd" value="$!{currentUser.pwd}" required/>

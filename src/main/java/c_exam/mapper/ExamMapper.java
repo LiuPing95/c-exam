@@ -20,4 +20,8 @@ public interface ExamMapper {
 	
 	List<ExamInfo> getExamInfos(@Param("start") Integer start, @Param("end") Integer end);
 
+	List<Integer> getQuestionIdsByExamId(@Param("examId") int examId);
+
+	void del(@Param("examId") int examId);
+
 }

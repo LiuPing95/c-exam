@@ -7,7 +7,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import c_exam.pojo.dto.UserDto;
-import c_exam.util.UserConstant;
+import c_exam.util.AppConstant;
 
 /**
  * @author LiuPing
@@ -25,7 +25,7 @@ public class URLInterceptor implements HandlerInterceptor {
 
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		if (!request.getRequestURI().contains("login")) {
-			UserDto dto = (UserDto) request.getSession().getAttribute(UserConstant.CUR_USER);
+			UserDto dto = (UserDto) request.getSession().getAttribute(AppConstant.CUR_USER);
 			if(dto == null) {
 				response.sendRedirect(request.getContextPath() + "/login");
 				// 还必须有个返回值

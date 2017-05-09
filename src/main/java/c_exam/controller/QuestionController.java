@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import c_exam.pojo.dao.QuestionInfo;
+import c_exam.pojo.dao.QuestionType;
 import c_exam.service.QuestionService;
 import c_exam.util.ExcelUtil;
 import c_exam.util.Page;
@@ -29,23 +30,69 @@ public class QuestionController {
 
 	@Autowired
 	private QuestionService questionService;
+
+	@RequestMapping("toEdit")
+	public ModelAndView toAdd(String action, Integer id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		if ("add".equals(action)) {
+			map.put("action", "add");
+			List<String> types = new ArrayList<String>();
+			types.add(QuestionType.BLANK.getValue());
+			types.add(QuestionType.CHOOSE.getValue());
+			types.add(QuestionType.PROGRESS.getValue());
+			map.put("types", types);
+		}
+		if ("edit".equals(action)) {
+			map.put("action", "edit");
+		}
+		map.put("content", "questionEdit");
+		return new ModelAndView("index").addAllObjects(map);
+	}
+
+	@RequestMapping("add")
+	public String add(QuestionInfo obj) {
+		questionService.add(obj);
+		return "redirect:/question/list";
+	}
+
+	@RequestMapping("edit")
+	public String edit(QuestionInfo obj) {
+		return "redirect:/question/list";
+	}
 	
+	@RequestMapping("del")
+	public String del(Integer id) {
+		questionService.del(id);
+		return "redirect:/question/list";
+	}
+
 	@RequestMapping("list")
-	public ModelAndView list(Page<QuestionInfo> page, String type) {
-		if(page == null) {
+	public ModelAndView list(Page<QuestionInfo> page, String type, String content) {
+		if (page == null) {
 			page = new Page<QuestionInfo>();
 		}
-		page.setData(questionService.getQuestionByPage(page.getPageNum(), page.getPageSize()));
-		int total =questionService.getTotal(type);
+		if (type != null) {
+			type = "".equals(type.trim()) ? null : type;
+		}
+		if (content != null) {
+			content = "".equals(content.trim()) ? null : content;
+		}
+		page.setData(questionService.getQuestionByPage(page.getPageNum(), page.getPageSize(), type, content));
+		int total = questionService.getTotal(type, content);
 		int totalPage = total / page.getPageSize();
 		page.setTotal(total);
-		page.setTotalPage(total % page.getPageSize() > 0 ? totalPage +1 : totalPage);
+		page.setTotalPage(total % page.getPageSize() > 0 ? totalPage + 1 : totalPage);
+		List<String> types = new ArrayList<String>();
+		types.add(QuestionType.BLANK.getValue());
+		types.add(QuestionType.CHOOSE.getValue());
+		types.add(QuestionType.PROGRESS.getValue());
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("types", types);
 		map.put("content", "question");
 		map.put("page", page);
 		return new ModelAndView("index").addAllObjects(map);
 	}
-	
+
 	@RequestMapping("import")
 	public String importTemplate(@RequestParam("file") CommonsMultipartFile file, RedirectAttributes attr) {
 		try {
@@ -80,7 +127,7 @@ public class QuestionController {
 					}
 				}
 				if (list.size() == data.length - 1) {
-					
+
 				}
 			}
 		} catch (Exception e) {

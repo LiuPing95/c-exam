@@ -23,10 +23,13 @@ public interface QuestionMapper {
 	List<Integer> getQuestionIds(@Param("type") String type);
 
 	// 根据题型分组
-	List<QuestionInfo> getQuestionByPage(@Param("start") int start, @Param("end") int end);
+	List<QuestionInfo> getQuestionByPage(@Param("start") int start, @Param("end") int end, @Param("type") String type,
+			@Param("content") String content);
 
-	int getTotal(@Param("type") String type);
+	int getTotal(@Param("type") String type, @Param("content") String content);
 
 	List<String> getTypes();
+
+	void del(@Param("id") Integer id);
 
 }

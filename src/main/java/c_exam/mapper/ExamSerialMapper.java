@@ -22,6 +22,12 @@ public interface ExamSerialMapper {
 
 	List<ExamSerialInfo> getAll();
 
-	void del(Integer id);
+	void del(@Param("id") Integer id);
+
+	void use(@Param("id") Integer id);
+
+	void cancel(@Param("id") Integer id);
+
+	ExamSerialInfo getCur();
 
 }

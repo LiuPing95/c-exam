@@ -68,4 +68,8 @@ public class UserServiceImpl implements UserService {
 		userMapper.updateCurUser(user);
 	}
 
+	public void del(Integer id) {
+		userMapper.del(id);
+	}
+
 }

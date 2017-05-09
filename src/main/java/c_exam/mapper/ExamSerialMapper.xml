@@ -7,17 +7,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="addExamSerial">
 		insert into examSerialInfo (
-			id, forDesc, createTime
+			id, forDesc, status, createTime
 		)
 		values (
 			seq_for_examSerialInfo.nextval,
 			#{obj.forDesc},
+			0,
 			sysdate
 		)
 	</insert>
 	
+	<update id="use">
+		update examSerialInfo set status = 1 where id = #{id}
+	</update>
+	
+	<update id="cancel">
+		update examSerialInfo set status = 0 where id != #{id}
+	</update>
+	
 	<select id="getExamSerialInfoById" resultType="ExamSerialInfo">
 		select * from examSerialInfo where id = #{id}
+	</select>
+	
+	<select id="getCur" resultType="ExamSerialInfo">
+		select * from examSerialInfo where status = 1
 	</select>
 	
 	<select id="getAll" resultType="ExamSerialInfo">
