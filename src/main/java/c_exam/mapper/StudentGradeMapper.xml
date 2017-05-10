@@ -6,15 +6,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="c_exam.mapper.StudentGradeMapper">
 
 	<insert id="addStudentGrade">
-		insert into studentGradeInfo (
-			id, examId, grade, createTime
+		insert into stuGradeInfo (
+			id, stuId, examId, grade, createTime
 		)
 		values (
-			seq_for_studentGradeInfo.nextval,
+			seq_for_stuGradeInfo.nextval,
+			#{obj.stuId},
 			#{obj.examId},
 			#{obj.grade},
 			sysdate
 		)
 	</insert>
+	
+	<select id="getStuGradeList" resultType="c_exam.pojo.dto.StudentGradeDto">
+		select
+			a.stuId, a.examId, a.grade, b.forDesc examName, c.name stuName 
+		from 
+			stuGradeInfo a, examSerialInfo b, userInfo c
+		where 
+			a.examId = b.id and a.stuId = c.id
+	</select>
+	
+	<select id="getGrade" resultType="c_exam.pojo.dto.StudentGradeDto">
+		select
+			a.stuId, a.examId, a.grade, b.forDesc examName, c.name stuName 
+		from 
+			stuGradeInfo a, examSerialInfo b, userInfo c
+		where 
+			a.examId = b.id and a.stuId = c.id and a.stuId = #{stuId} and a.examId = #{examId}
+	</select>
 	
 </mapper>

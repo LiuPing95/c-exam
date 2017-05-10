@@ -18,4 +18,6 @@ public interface StudentAnswerMapper {
 
 	List<StudentAnswerInfo> getStudentAnswerInfo(@Param("id") Integer id);
 
+	List<StudentAnswerInfo> getAnswerByUser(@Param("userId") Integer userId, @Param("examId") Integer examId);
+
 }

@@ -13,7 +13,7 @@ public interface UserService {
 
 	List<UserDto> getUserByPage(int pageNum, int pageSize);
 
-	void updateUser(UserDto user);
+	void updateUser(UserInfo user);
 
 	void add(UserInfo user);
 

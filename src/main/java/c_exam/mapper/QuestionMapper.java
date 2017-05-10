@@ -32,4 +32,6 @@ public interface QuestionMapper {
 
 	void del(@Param("id") Integer id);
 
+	void update(@Param("obj") QuestionInfo obj);
+
 }

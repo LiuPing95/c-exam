@@ -6,11 +6,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="c_exam.mapper.StudentAnswerMapper">
 
 	<insert id="addStudentAnswer">
-		insert into studentAnswerInfo (
+		insert into stuAnswerInfo (
 			id, stuId, questionId, examId, answer, createTime
 		)
 		values (
-			seq_for_studentAnswerInfo.nextval,
+			seq_for_stuAnswerInfo.nextval,
 			#{obj.stuId},
 			#{obj.questionId},
 			#{obj.examId},
@@ -18,5 +18,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			sysdate
 		)
 	</insert>
+	
+	<select id="getAnswerByUser" resultType="StudentAnswerInfo">
+		select * from stuAnswerInfo where 1=1
+		<if test="userId != null">
+			and stuId = #{userId}
+		</if>
+		<if test="examId != null">
+			and examId = #{examId}
+		</if>
+	</select>
 	
 </mapper>

@@ -35,16 +35,17 @@ public class QuestionController {
 	public ModelAndView toAdd(String action, Integer id) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		if ("add".equals(action)) {
-			map.put("action", "add");
-			List<String> types = new ArrayList<String>();
-			types.add(QuestionType.BLANK.getValue());
-			types.add(QuestionType.CHOOSE.getValue());
-			types.add(QuestionType.PROGRESS.getValue());
-			map.put("types", types);
+			
 		}
 		if ("edit".equals(action)) {
-			map.put("action", "edit");
+			map.put("question", questionService.getQuestionById(id));
 		}
+		List<String> types = new ArrayList<String>();
+		types.add(QuestionType.BLANK.getValue());
+		types.add(QuestionType.CHOOSE.getValue());
+		types.add(QuestionType.PROGRESS.getValue());
+		map.put("types", types);
+		map.put("action", action);
 		map.put("content", "questionEdit");
 		return new ModelAndView("index").addAllObjects(map);
 	}
@@ -57,6 +58,7 @@ public class QuestionController {
 
 	@RequestMapping("edit")
 	public String edit(QuestionInfo obj) {
+		questionService.update(obj);
 		return "redirect:/question/list";
 	}
 	

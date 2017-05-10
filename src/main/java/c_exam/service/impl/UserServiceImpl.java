@@ -49,15 +49,21 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public UserDto getUserById(int userId) {
-		return null;
+		UserInfo user = userMapper.getUserById(userId);
+		UserDto obj = new UserDto();
+		BeanUtils.copyProperties(user, obj);
+		obj.setDeptName(deptMapper.getDeptById(obj.getDeptId()).getName());
+		obj.setRoleName(roleMapper.getRoleInfoById(obj.getRoleId()).getName());
+		obj.setClassName(classMapper.getClassInfoById(obj.getClassId()).getName());
+		return obj;
 	}
 
 	public List<UserDto> getUserByPage(int pageNum, int pageSize) {
 		return userMapper.getUsers((pageNum-1) * pageSize, pageNum * pageSize);
 	}
 
-	public void updateUser(UserDto user) {
-		
+	public void updateUser(UserInfo user) {
+		userMapper.updateCurUser(user);
 	}
 
 	public void add(UserInfo user) {

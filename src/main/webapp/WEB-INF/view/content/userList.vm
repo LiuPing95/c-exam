@@ -37,7 +37,7 @@
                 <div class="am-dropdown" data-am-dropdown>
                   	<button class="am-btn am-btn-default am-btn-xs am-dropdown-toggle" data-am-dropdown-toggle><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
                   	<ul class="am-dropdown-content">
-                    	<li><a href="javascript:window.location.href='$!{rc.contextPath}/user/toEdit?action=edit&id=$!{item.id}'">修改</a></li>
+                    	<li><a href="javascript:window.location.href='$!{rc.contextPath}/user/toEdit?action=edit&userId=$!{item.id}'">修改</a></li>
                     	<li><a href="javascript:window.location.href='$!{rc.contextPath}/user/del?id=$!{item.id}'">删除</a></li>
                   	</ul>
                 </div>

@@ -1,4 +1,4 @@
-package c_exam.service;
+package c_exam.service.impl;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import c_exam.mapper.ExamMapper;
 import c_exam.pojo.dao.ExamInfo;
+import c_exam.service.ExamInfoService;
 
 /**
  * @author LiuPing

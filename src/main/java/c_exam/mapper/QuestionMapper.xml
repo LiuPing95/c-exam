@@ -23,6 +23,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
+	<update id="update">
+		update questionInfo set
+		content = #{obj.content},
+		forComment = #{obj.forComment},
+		questionType = #{obj.questionType},
+		itemA = #{obj.itemA},
+		itemB = #{obj.itemB},
+		itemC = #{obj.itemC},
+		itemD = #{obj.itemD},
+		answer = #{obj.answer}
+		where id = #{obj.id}
+	</update>
+	
 	<delete id="del">
 		delete from questionInfo where id = #{id}
 	</delete>
@@ -31,7 +44,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select questionType from questionInfo group by questionType
 	</select>
 	
-	<select id="getQuestionInfo" resultType="QuestionInfo">
+	<select id="getQuestionInfoById" resultType="QuestionInfo">
 		select * from questionInfo where id = #{id}
 	</select>
 	

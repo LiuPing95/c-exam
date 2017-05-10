@@ -27,4 +27,8 @@ public class StuAnswerServiceImpl implements StuAnswerService {
 		mapper.addStudentAnswer(obj);
 	}
 
+	public List<StudentAnswerInfo> getStuAnswers(Integer userId, Integer examId) {
+		return mapper.getAnswerByUser(userId, examId);
+	}
+
 }

@@ -77,7 +77,7 @@ public class UserController {
 	}
 	
 	@RequestMapping("edit")
-	public String edit(UserDto user) {
+	public String edit(UserInfo user) {
 		userService.updateUser(user);
 		return "redirect:/user/list";
 	}

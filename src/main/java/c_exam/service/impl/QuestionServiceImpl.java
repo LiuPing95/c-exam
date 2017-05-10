@@ -43,4 +43,12 @@ public class QuestionServiceImpl implements QuestionService {
 		return mapper.getQuestionByIds(ids);
 	}
 
+	public QuestionInfo getQuestionById(Integer id) {
+		return mapper.getQuestionInfoById(id);
+	}
+
+	public void update(QuestionInfo obj) {
+		mapper.update(obj);
+	}
+
 }

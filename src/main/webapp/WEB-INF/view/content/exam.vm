@@ -1,3 +1,6 @@
+#if($!{msg} != "")
+	$!{msg}
+#else
 <div class="am-cf am-padding">
 	<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">$!{curExam.forDesc}——考试试卷</strong></div>
 </div>
@@ -77,7 +80,6 @@
 		      	$!{item.content}
 		    </div>
 			<div class="am-form-group">
-	      		<label for="answer">请输入答案</label>
 		      	<textarea class="" name="answer" id="answer" rows="5"></textarea>
 		    </div>
 		</form>
@@ -96,7 +98,6 @@
 		      	$!{item.content}
 		    </div>
 		    <div class="am-form-group">
-	      		<label for="answer">请输入答案</label>
 		      	<textarea class="" name="answer" id="answer" rows="5"></textarea>
 		    </div>
 		</form>
@@ -104,6 +105,7 @@
 	#end
 	</div>
   	</fieldset>
+#end
   	
 <script>
 	function confirm(){
@@ -140,6 +142,10 @@
 				answer = $(this).find('input[name="answer"]:checked').val();
 			}else{
 				answer = $(this).find('#answer').val();
+			}
+			if(answer == "" || answer == undefined){
+				##说明是没做的，要给出提示
+				answer = "noAnswer";
 			}
 			s = s + id + "_" + answer + "&";
 		});

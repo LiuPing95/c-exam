@@ -9,4 +9,6 @@ public interface StuAnswerService {
 	List<StudentAnswerInfo> getAnswer();
 
 	void add(StudentAnswerInfo obj);
+
+	List<StudentAnswerInfo> getStuAnswers(Integer userId, Integer examId);
 }

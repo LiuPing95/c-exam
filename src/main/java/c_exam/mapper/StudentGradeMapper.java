@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import c_exam.pojo.dao.StudentGradeInfo;
+import c_exam.pojo.dto.StudentGradeDto;
 
 /**
  * 题目数据接口
@@ -16,6 +17,8 @@ public interface StudentGradeMapper {
 
 	void addStudentGrade(@Param("obj") StudentGradeInfo obj);
 
-	List<StudentGradeInfo> getStudentGradeInfo(@Param("id") Integer id);
+	List<StudentGradeDto> getStuGradeList();
+
+	StudentGradeDto getGrade(@Param("stuId") int stuId, @Param("examId") int examId);
 
 }

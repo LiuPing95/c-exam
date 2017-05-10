@@ -17,5 +17,9 @@ public interface QuestionService {
 	void add(QuestionInfo obj);
 
 	void del(Integer id);
+
+	QuestionInfo getQuestionById(Integer id);
+
+	void update(QuestionInfo obj);
 	
 }
