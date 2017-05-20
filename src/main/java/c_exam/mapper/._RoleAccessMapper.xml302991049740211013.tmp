@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间是映射接口的全类名 -->
+<mapper namespace="c_exam.mapper.RoleAccessMapper">
+
+	<insert id="addRoleAccess">
+		insert into roleAccessInfo (
+			id, roleId, pemissionId, createTime
+		)
+		values (
+			seq_for_roleAccessInfo.nextval,
+			#{obj.roleId},
+			#{obj.permissionId},
+			sysdate
+		)
+	</insert>
+	
+	<delete id="del">
+		delete from roleAccessInfo where roleId = #{roleId} and pemissionId = #{permissionId} 
+	</delete>
+	
+	<select id="getPermissionIdByRoleId"  resultType="int">
+		select pemissionId from roleAccessInfo where roleId = #{roleId}
+	</select>
+	
+</mapper>

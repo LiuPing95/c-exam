@@ -1,0 +1,45 @@
+<form action="$!{rc.contextPath}/updateCurUser" method="post" class="am-form" data-am-validator>
+	<input type="hidden" name="id" value="$!{currentUser.id}" />
+  	<div class="am-cf am-padding">
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">用户信息</strong></div>
+  	</div>
+  	<fieldset>
+    <div class="am-form-group">
+      	<label for="name">姓名</label><input type="text" name="name" value="$!{currentUser.name}" readonly="readonly"/>
+    </div>
+    <div class="am-form-group">
+      	<label for="college">学校</label><input type="text" name="college" value="$!{currentUser.college}" readonly="readonly"/>
+    </div>
+    <div class="am-form-group">
+      	<label for="deptName">系别</label><input type="text" name="deptName" value="$!{currentUser.deptName}" readonly="readonly"/>
+    </div>
+    <div class="am-form-group">
+      	<label for="className">班级</label><input type="text" name="className" value="$!{currentUser.className}" readonly="readonly"/>
+    </div>
+    <div class="am-form-group">
+      	<label for="gender">性别</label><input type="text" name="gender" value="$!{currentUser.gender}" readonly="readonly"/>
+    </div>
+    <div class="am-form-group">
+      <label for="pwd">密码</label><input type="password" name="pwd" value="$!{currentUser.pwd}" required/>
+    </div>
+    <div class="am-form-group">
+      <label for="birthday">出生日期</label><input type="text" name="birthday" value="$!{currentUser.birthday}" required/>
+    </div>
+    <div class="am-form-group">
+      <label for="sign">签名</label><input type="text" id="sign" name="sign" value="$!{currentUser.sign}" required/>
+    </div>
+    ##<div class="am-form-group">
+      ##<label for="img">头像</label><input type="text" id="img" name="img" value="$!{currentUser.img}" required/>
+    ##</div>
+    <div class="am-form-group">
+      <label for="idCard">身份证号码</label><input type="text" id="idCard" name="idCard" value="$!{currentUser.idCard}" required/>
+    </div>
+    <div class="am-form-group">
+      <label for="phone">手机号码</label><input type="text" id="phone" name="phone" value="$!{currentUser.phone}" required/>
+    </div>
+    <div class="am-cf">
+	  <button class="am-btn am-btn-primary am-round am-fl" type="submit">修改</button>
+	  <button class="am-btn am-btn-success am-round am-fr" type="button" onclick="location.href='$!{rc.contextPath}/index'">返回首页</button>
+	</div>
+  </fieldset>
+</form>

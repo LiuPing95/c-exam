@@ -23,8 +23,63 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
-	<select id="getQuestionInfo" resultType="QuestionInfo">
+	<update id="update">
+		update questionInfo set
+		content = #{obj.content},
+		forComment = #{obj.forComment},
+		questionType = #{obj.questionType},
+		itemA = #{obj.itemA},
+		itemB = #{obj.itemB},
+		itemC = #{obj.itemC},
+		itemD = #{obj.itemD},
+		answer = #{obj.answer}
+		where id = #{obj.id}
+	</update>
+	
+	<delete id="del">
+		delete from questionInfo where id = #{id}
+	</delete>
+	
+	<select id="getTypes" resultType="String">
+		select questionType from questionInfo group by questionType
+	</select>
+	
+	<select id="getQuestionInfoById" resultType="QuestionInfo">
 		select * from questionInfo where id = #{id}
 	</select>
 	
+	<select id="getQuestionIds" resultType="int">
+		select id from questionInfo where questionType = #{type}
+	</select>
+	
+	<select id="getQuestionByIds" resultType="QuestionInfo">
+		select * from questionInfo where id in
+		<choose>
+			<when test="ids == null">
+				(0)
+			</when>
+			<otherwise>
+				<foreach collection="ids" item="id" separator="," open="(" close=")">
+					#{id}
+				</foreach>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="getQuestionByPage" resultType="QuestionInfo">
+		select * from(
+			select c.*,rownum rn 
+			from (select * from questionInfo) c
+			where #{end} >= rownum
+			<if test="type != null"> and questionType = #{type}</if>
+			<if test="content != null"> and content like '%'||#{content}||'%'</if>
+		)
+		where rn > #{start} 
+	</select>
+	
+	<select id="getTotal" resultType="int">
+		select count(id) from questionInfo where 1=1
+		<if test="type != null"> and questionType = #{type}</if>
+		<if test="content != null"> and content like '%'||#{content}||'%'</if>
+	</select>
 </mapper>

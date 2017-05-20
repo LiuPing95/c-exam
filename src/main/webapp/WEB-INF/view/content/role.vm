@@ -1,0 +1,39 @@
+<form action="" method="post" id="pageForm" style="width:100%">
+  	<div class="admin-content-body">
+	  	<div class="am-cf am-padding">
+			<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">角色管理</strong></div>
+	  	</div>
+	    <div class="am-u-sm-12">
+	  		<table class="am-table am-table-bd am-table-striped admin-content-table">
+	        <thead>
+	        <tr>
+          		<th>ID</th><th>角色名</th><th>描述</th><th>添加时间</th><th>管理</th>
+        	</tr>
+        	</thead>
+        	<tbody>
+        	#foreach($item in $!{roles})
+            <tr>
+        	  	<td>$!{item.id}</td>
+        	  	<td>$!{item.name}</td>
+        	  	<td>$!{item.forDesc}</td>
+        	  	<td>$!{item.createTime}</td>
+              	<td>
+                <div class="am-dropdown" data-am-dropdown>
+                  	<button class="am-btn am-btn-default am-btn-xs am-dropdown-toggle" data-am-dropdown-toggle><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
+                  	<ul class="am-dropdown-content">
+                    	<li><a href="javascript:window.location.href='$!{rc.contextPath}/roleAccess/toEdit?id=$!{item.id}'">修改</a></li>
+                    	<li><a href="javascript:del($!{item.id})">删除</a></li>
+                    	<li><a href="javascript:window.location.href='$!{rc.contextPath}/roleAccess/list?roleId=$!{item.id}&action=auth'">查看未拥有权限</a></li>
+                    	<li><a href="javascript:window.location.href='$!{rc.contextPath}/roleAccess/list?roleId=$!{item.id}&action=unauth'">查看已拥有权限</a></li>
+                  	</ul>
+                </div>
+              	</td>
+            </tr>
+        #end
+        </tbody>
+      	</table>
+    	</div>
+	</div>
+#page()
+#pageJs()
+</form>
