@@ -1,0 +1,52 @@
+<form action="" method="post" id="pageForm" style="width:100%">
+  	<div class="admin-content-body">
+	  	<div class="am-cf am-padding">
+			<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">用户信息</strong></div>
+	  	</div>
+	  	<div class="am-cf am-padding">
+	  		<input class="am-btn am-btn-primary" value="添加用户" onclick="window.location.href='$!{rc.contextPath}/user/toEdit?action=add'"/>
+  		</div>
+	    <div class="am-u-sm-12 am-u-md-3">
+	        <input type="text" name="itemName" class="am-form-field" placeholder="班级">
+	    </div>
+	    <div class="am-u-sm-12 am-u-md-3">
+	        <input type="text" name="className" class="am-form-field" placeholder="学号">
+	    </div>
+	    <div class="am-u-sm-12 am-u-md-3">
+	        <input type="text" name="className" class="am-form-field" placeholder="姓名">
+	    </div>
+    	<span class="am-input-group-btn"><button class="am-btn am-btn-default" onclick="pageSubmit()">搜索</button></span>
+	    <div class="am-u-sm-12">
+	  		<table class="am-table am-table-bd am-table-striped admin-content-table">
+	        <thead>
+	        <tr>
+          		<th>ID</th><th>角色</th><th>用户名</th><th>学校</th><th>电话</th><th>性别</th><th>班级</th><th>管理</th>
+        	</tr>
+        	</thead>
+        	<tbody>
+        	#foreach($item in $!{users})
+            <tr>
+        	  	<td>$!{item.id}</td>
+        	  	<td>$!{item.roleName}</td>
+        	  	<td>$!{item.name}</td>
+        	  	<td>$!{item.college}</td>
+        	  	<td>$!{item.phone}</td>
+        	  	<td>$!{item.gender}</td>
+        	  	<td>$!{item.className}</td>
+              	<td>
+                <div class="am-dropdown" data-am-dropdown>
+                  	<button class="am-btn am-btn-default am-btn-xs am-dropdown-toggle" data-am-dropdown-toggle><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
+                  	<ul class="am-dropdown-content">
+                    	<li><a href="javascript:window.location.href='$!{rc.contextPath}/user/toEdit?action=edit&userId=$!{item.id}'">修改</a></li>
+                    	<li><a href="javascript:window.location.href='$!{rc.contextPath}/user/del?id=$!{item.id}'">删除</a></li>
+                  	</ul>
+                </div>
+              	</td>
+            </tr>
+        #end
+        </tbody>
+      	</table>
+    	</div>
+	</div>
+#page()
+#pageJs()

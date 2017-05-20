@@ -16,6 +16,18 @@ public interface ExamSerialMapper {
 
 	void addExamSerial(@Param("obj") ExamSerialInfo obj);
 
-	List<ExamSerialInfo> getExamSerialInfo(@Param("id") Integer id);
+	ExamSerialInfo getExamSerialInfoById(@Param("id") Integer id);
+	
+	List<ExamSerialInfo> getExamSerialInfo(@Param("start") Integer start, @Param("end") Integer end);
+
+	List<ExamSerialInfo> getAll();
+
+	void del(@Param("id") Integer id);
+
+	void use(@Param("id") Integer id);
+
+	void cancel(@Param("id") Integer id);
+
+	ExamSerialInfo getCur();
 
 }

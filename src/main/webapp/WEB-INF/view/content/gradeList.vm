@@ -1,0 +1,38 @@
+<form action="" method="post" id="pageForm" style="width:100%">
+  	<div class="admin-content-body">
+	  	<div class="am-cf am-padding">
+			<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">学生成绩信息</strong></div>
+	  	</div>
+	    <div class="am-u-sm-12">
+	  		<table class="am-table am-table-bd am-table-striped admin-content-table">
+	        <thead>
+	        <tr>
+          		<th>学生姓名</th><th>考试场次</th><th>分数</th><th>操作</th>
+        	</tr>
+        	</thead>
+        	<tbody>
+        	#foreach($item in $!{grades})
+            <tr>
+        	  	<td>$!{item.stuName}</td>
+        	  	<td>$!{item.examName}</td>
+        	  	<td>
+        	  		#if($!{item.grade} == -1) 未批阅
+        	  		#else $!{item.grade}
+        	  		#end
+        	  	</td>
+              	<td>
+                <div class="am-dropdown" data-am-dropdown>
+                  	<button class="am-btn am-btn-default am-btn-xs am-dropdown-toggle" data-am-dropdown-toggle><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
+                  	<ul class="am-dropdown-content">
+                    	<li><a href="javascript:window.location.href='$!{rc.contextPath}/question/toEdit?id=$!{item.id}&action=edit'">修改成绩</a></li>
+                    	<li><a href="javascript:window.location.href='$!{rc.contextPath}/stuGrade/reportList?stuId=$!{item.stuId}&&examId=$!{item.examId}'">批阅</a></li>
+                  	</ul>
+                </div>
+              	</td>
+            </tr>
+        	#end
+        </tbody>
+      	</table>
+    	</div>
+	</div>
+</form>

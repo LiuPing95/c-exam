@@ -1,0 +1,11 @@
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<title>C语言考试系统</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='renderer' content='webkit'><meta http-equiv='Cache-Control' content='no-siteapp' />
+<link rel='icon' type='image/png' href='$!{rc.contextPath}/static/assets/i/favicon.png'>
+<link rel='apple-touch-icon-precomposed' href='$!{rc.contextPath}/static/assets/i/app-icon72x72@2x.png'>
+<link rel='stylesheet' href='$!{rc.contextPath}/static/assets/css/amazeui.min.css'/>
+<link rel='stylesheet' href='$!{rc.contextPath}/static/assets/css/admin.css'>
+<link rel='stylesheet' href='$!{rc.contextPath}/static/assets/css/app.css'>
+<script src="$!{rc.contextPath}/static/assets/js/jquery-1.11.3.js"></script>

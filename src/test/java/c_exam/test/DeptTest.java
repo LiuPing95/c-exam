@@ -22,4 +22,14 @@ public class DeptTest {
 		obj.setName("计算机科学与技术学院");
 		mapper.addDept(obj);
 	}
+	
+	@Test
+	public void testGetById() {
+		System.out.println(mapper.getDeptById(100001));
+	}
+	
+	@Test
+	public void testGet() {
+		System.out.println(mapper.getDeptInfo(1-1, 1*10));
+	}
 }

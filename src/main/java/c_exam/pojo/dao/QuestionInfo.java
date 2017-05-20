@@ -126,5 +126,19 @@ public class QuestionInfo implements Serializable {
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
+	
+	public String getSimpleComment() {
+		return getForComment().substring(0, 20);
+	}
+	
+	public String getSimpleContent() {
+		return content.substring(0, 20);
+	}
+
+	@Override
+	public String toString() {
+		return "QuestionInfo [id=" + id + ", questionType=" + questionType + ", content=" + content + ", forComment=" + forComment + ", itemA="
+				+ itemA + ", itemB=" + itemB + ", itemC=" + itemC + ", itemD=" + itemD + ", answer=" + answer + ", createTime=" + createTime + "]";
+	}
 
 }

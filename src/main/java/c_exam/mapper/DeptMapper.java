@@ -15,7 +15,11 @@ import c_exam.pojo.dao.DeptInfo;
 public interface DeptMapper {
 
 	void addDept(@Param("obj") DeptInfo obj);
+	
+	DeptInfo getDeptById(@Param("id") Integer id);
 
-	List<DeptInfo> getDeptInfo(@Param("id") Integer id);
+	List<DeptInfo> getDeptInfo(@Param("start") Integer start, @Param("end") Integer end);
+
+	List<DeptInfo> getDepts();
 
 }

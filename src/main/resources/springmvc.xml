@@ -22,6 +22,23 @@
 	<!-- 支持spring3.0新的mvc注解 -->
 	<mvc:annotation-driven />
 
+	<!-- 配置拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/*" />
+			<mvc:mapping path="/*/*" />
+			<bean class="c_exam.controller.URLInterceptor"/>
+				<!-- <property name="allowUrls">
+					<list>
+						<value>/toLogin</value>
+						<value>/js</value>
+						<value>/css</value>
+					</list>
+				</property>
+			</bean> -->
+		</mvc:interceptor>
+	</mvc:interceptors>
+
 	<!-- 不拦截这些 -->
 	<mvc:resources mapping="static/**" location="/static/" />
 

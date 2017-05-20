@@ -17,12 +17,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
-	<select id="getClassInfoById" resultType="c_exam.pojo.dao.ClassInfo">
+	<select id="getClasses" resultType="ClassInfo">
+		select * from classInfo
+	</select>
+	
+	<select id="getClassInfoById" resultType="ClassInfo">
 		select * from classInfo where id = #{id}
 	</select>
 	
 	<select id="getClassInfo" resultType="ClassInfo">
-		select * from(
+		select * 
+		from
+		(
 			select c.*,rownum rn 
 			from (select * from classInfo) c
 			where #{end} >= rownum

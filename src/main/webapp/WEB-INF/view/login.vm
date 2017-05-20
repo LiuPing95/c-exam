@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-#head()
+#parse("/content/base/head.vm")
 <style>
 	##全局居中
   	* {
 	    margin: 0 auto;
 	    padding: 0;
-	    border:0;
+	    border:0
 	}
 	#body {
 		width: 600px;
 		height: 350px;
 		margin-top: 200px;
 		border: #CCC solid 1px;
-		border-radius: 15px;
+		border-radius: 15px
 	}
     .header {
-    	text-align: center;
+    	text-align: center
     }
     .header h1 {
     	font-size: 200%;
     	color: #333;
-    	margin-top: 30px;
+    	margin-top: 30px
     }
     .header p {
-    	font-size: 14px;
+    	font-size: 14px
     }
     #login {
-    	width:300px;
+    	width:300px
     }
 </style>
 </head>
@@ -42,40 +42,52 @@
     </div>
     <hr />
 </div>
-<form class="am-form" action="$!{rc.contextPath}/toLogin" method="post">
+<form class="am-form" action="" method="post">
   	<fieldset>
 		<div id="login">
-		   <div class="am-form-group">
-				<select class="am-input-group" name="role">
-		        	<option value="admin">管理员登录</option>
-		        	<option value="teacher">教师登录</option>
-		        	<option value="student">学生登录</option>
-				</select>
-		    </div>
 			<div class="am-input-group">
 				<span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
-				<input type="text" class="am-form-field" name="name" placeholder="Username">
+				<input type="text" class="am-form-field" id="userName" name="userName" placeholder="Username">
 			</div>
 			<div class="am-input-group">
 				<span class="am-input-group-label"><i class="am-icon-lock am-icon-fw"></i></span>
-				<input type="password" class="am-form-field" name="pwd" placeholder="Password">
+				<input type="password" class="am-form-field" id="pwd" name="pwd" placeholder="Password">
 			</div>
-	    	<p><button type="submit" class="am-btn am-btn-default" style="float:right;">登 录</button></p>
+	    	<p><input type="button" value="登 录" onclick="login()" class="am-btn am-btn-default" style="float:right;"></p>
 		</div>
   	</fieldset>
 </form>
 </div>
     
 #amazeuiJs()
-#if($!{msg} && $!{msg} == "1")
-    <div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
-	    <div class="am-modal-dialog">
-	        <div class="am-modal-bd">账号不能为空</div>
-	        <div class="am-modal-footer"><span class="am-modal-btn">确定</span></div>
-	    </div>
+<div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+    <div class="am-modal-dialog">
+        <div class="am-modal-bd">账号或密码错误</div>
+        <div class="am-modal-footer"><span class="am-modal-btn">确定</span></div>
     </div>
-    <script>$('#my-alert').modal('open');</script>
-#end
+</div>
+<script>
+function login() {
+	$.ajax({
+    type : 'post',
+    url : '$!{rc.contextPath}/h/h/loginIn',
+    data : {
+        name : $("#userName").val(),
+        pwd : $("#pwd").val()
+    },
+    cache : false,
+    dataType:'json',
+    error : function (data) {},
+    success : function (data) {
+      	if(data == true){
+      		window.location.href='$!{rc.contextPath}/index';
+      	}else{
+			$('#my-alert').modal('open');
+      	}
+    }
+	});
+}
+</script>
 </body>
 </html>
 

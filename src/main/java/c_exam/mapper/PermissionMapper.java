@@ -16,6 +16,24 @@ public interface PermissionMapper {
 
 	void addPermission(@Param("obj") PermissionInfo obj);
 
-	List<PermissionInfo> getPermissionInfo(@Param("id") Integer id);
+	/**
+	 * 查询权限信息
+	 * @param rid 角色id
+	 * @return
+	 */
+	List<PermissionInfo> getPermissionInfos(@Param("rid") Integer rid);
+	
+	/**
+	 * TODO:暂未实现
+	 */
+	PermissionInfo getPermissionById(@Param("id") Integer id);
+
+	List<PermissionInfo> getByIds(@Param("ids") List<Integer> ids);
+
+	List<PermissionInfo> getAll();
+
+	List<PermissionInfo> getRemainPermission(@Param("ids") List<Integer> ids);
+
+	void del(@Param("id") Integer id);
 
 }

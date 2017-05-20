@@ -15,6 +15,16 @@ public class StudentGradeInfo implements Serializable {
 	private int id;
 
 	private int examId;
+	
+	private int stuId;
+
+	public int getStuId() {
+		return stuId;
+	}
+
+	public void setStuId(int stuId) {
+		this.stuId = stuId;
+	}
 
 	private int grade;
 

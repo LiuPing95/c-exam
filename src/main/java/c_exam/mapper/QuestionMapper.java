@@ -16,6 +16,22 @@ public interface QuestionMapper {
 
 	void addQuestion(@Param("obj") QuestionInfo obj);
 
-	List<QuestionInfo> getQuestionInfo(@Param("id") Integer id);
+	QuestionInfo getQuestionInfoById(@Param("id") Integer id);
+
+	List<QuestionInfo> getQuestionByIds(@Param("ids") List<Integer> ids);
+
+	List<Integer> getQuestionIds(@Param("type") String type);
+
+	// 根据题型分组
+	List<QuestionInfo> getQuestionByPage(@Param("start") int start, @Param("end") int end, @Param("type") String type,
+			@Param("content") String content);
+
+	int getTotal(@Param("type") String type, @Param("content") String content);
+
+	List<String> getTypes();
+
+	void del(@Param("id") Integer id);
+
+	void update(@Param("obj") QuestionInfo obj);
 
 }

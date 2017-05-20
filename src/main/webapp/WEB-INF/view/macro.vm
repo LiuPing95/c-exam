@@ -26,9 +26,9 @@
 #end
 
 #macro(page)
-	<input type="hidden" name="pageNum" id="pageNum" value="#if($!{page.size} == 0) $!{page.defaultPageNum} #else $!{page.pageNum} #end" />
+	<input type="hidden" name="pageNum" id="pageNum" value="$!{page.pageNum}" />
 	##判断当页是否有数据
-	#if($!{page} && $!{page.size} > 0 && ($!{page.pageNum} != $!{page.defaultPageNum} || $!{page.size} == $!{page.pageSize}))
+	#if($!{page})
 		##设置js函数
 		<script>
 			function next() {
@@ -50,7 +50,7 @@
 	<div class="am-cf">
 		<div class="am-fr">
 			<ul data-am-widget="pagination" class="am-pagination am-pagination-default">
-				#if($!{page.pageNum} > $!{page.defaultPageNum})
+				#if($!{page.pageNum} > 1)
 					<li class="am-pagination-prev"><a href="javascript:prev()">上页</a></li>
 	        	#end
 	        #if($!{page.totalPage} > 1)
@@ -72,21 +72,14 @@
 			    	</div>
 	          	</li>
 	        #end
-	        
-	        #if($!{page.totalSize} > 0)
-		        #if($!{page.pageNum} < $!{page.totalPage})
-		          	<li class="am-pagination-next"><a href="javascript:next()">下页</a></li>
-		        #end
-		    #else
-		        #if($!{page.size} == $!{page.pageSize})
-		          	<li class="am-pagination-next"><a href="javascript:next()">下页</a></li>
-		        #end
-		    #end
+	        #if($!{page.pageNum} < $!{page.totalPage})
+	          	<li class="am-pagination-next"><a href="javascript:next()">下页</a></li>
+	        #end
 	      	</ul>
 	    </div>
 	</div>
 	##兼容性代码：修复最后一页刚好等于页面记录数时，不显示上一页的BUG
-	#elseif($!{page.size} == 0 && $!{page.pageNum} != $!{page.defaultPageNum})
+	#elseif($!{page.size} == 0 && $!{page.pageNum} != 1)
 	  	<script>
 	    function prev() {
 		  	var pn = $!{page.pageNum};//兼容性代码：修复最后一页刚好等于页面记录数时，将页号设置为0的BUG
@@ -102,90 +95,6 @@
 	    	</div>
 	  	</div>
 	#end	  
-#end
-
-#macro(head)
-  	<meta charset='utf-8'>
-  	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
-  	<title>C语言考试系统</title>
-  	<meta name='viewport' content='width=device-width, initial-scale=1'>
-  	<meta name='renderer' content='webkit'><meta http-equiv='Cache-Control' content='no-siteapp' />
-  	<link rel='icon' type='image/png' href='$!{rc.contextPath}/static/assets/i/favicon.png'>
-  	<link rel='apple-touch-icon-precomposed' href='$!{rc.contextPath}/start-console-web/static/assets/i/app-icon72x72@2x.png'>
-  	<link rel='stylesheet' href='$!{rc.contextPath}/static/assets/css/amazeui.min.css'/>
-  	<link rel='stylesheet' href='$!{rc.contextPath}/static/assets/css/admin.css'>
-  	<link rel='stylesheet' href='$!{rc.contextPath}/static/assets/css/app.css'>
-  	<script src="$!{rc.contextPath}/static/jquery-1.11.3.js"></script>
-#end
-
-#macro(top)
-  	<!--[if lte IE 9]>
-    	<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请升级浏览器</a>以获得更好的体验！</p>
-  	<![endif]-->
-  	<header class="am-topbar admin-header">
-    	<div class="am-topbar-brand">
-      		<strong>$!{dingsns.mainTitle}</strong> <small>$!{dingsns.subTitle}</small>
-    	</div>
-	    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}">
-	      	<span class="am-sr-only">导航切换</span>
-	      	<span class="am-icon-bars"></span>
-	    </button>
-	    <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
-	      	<ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
-	        	<li class="am-dropdown" data-am-dropdown><a href="javascript:;">$!{dingsns.user.role.name}</a></li>
-	        	<li class="am-dropdown" data-am-dropdown><a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">$!{dingsns.user.name}</a></li>
-	        	<li class="am-dropdown" data-am-dropdown><a href="$!{rc.contextPath}/logout" title="注销"><span class="am-icon-sign-out"></span></a></li>
-	      	</ul>
-	    </div>
-  	</header>
-#end
-
-#macro(crumb)
-  	#set($auth_ = $!{dingsns.getAuth($!{request})})
-  	#if($!{auth_})
-    	<ol class="am-breadcrumb"><li>$!{auth_.module.name}</li><li class="am-active">$!{auth_.name}</li></ol>
-  	#end
-  	#if($!{exceptionMsg})
-    	<div class="am-panel-group" id="accordion">
-      		<div class="am-panel am-panel-danger">
-		        <div class="am-panel-hd">
-		          	<h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-1'}">&nbsp;&nbsp;服务器运行异常</h4>
-		        </div>
-		        <div id="do-not-say-1" class="am-panel-collapse am-collapse">
-		          	<div class="am-panel-bd">
-		            	<pre>$!{exceptionMsg}</pre>
-		          	</div>
-		        </div>
-      		</div>
-    	</div>
-  	#end
-#end
-
-#macro(menu)
-  	#set($uri_ = $!{dingsns.reqUri($request)})
-	<div class='admin-sidebar am-offcanvas' id='admin-offcanvas'>
-		<div class='am-offcanvas-bar admin-offcanvas-bar'>
-  			<ul class='am-list admin-sidebar-list'>
-    			<li><a href='$!{rc.contextPath}/index'>首页</a></li>
-    				#set($moduleList_ = $!{dingsns.moduleList($!{dingsns.user})})
-					#foreach($module in $!{moduleList_})
-  						<li class='admin-parent'>
-    						<a class='am-cf' data-am-collapse="{target:'#$!{module.id}'}">$!{module.name}<span class='am-icon-angle-right am-fr am-margin-right'></span></a>
-		            		<ul class='am-list am-collapse admin-sidebar-sub#if($!{dingsns.containSubStr($!{module.authList},$!{uri_})}) am-in#end' id='$!{module.id}'>
-			            		#foreach($auth in $!{module.authList})
-			              			#if($!{auth} && $!{auth.isMenu} == 0)
-			                			<li><a href='$!{rc.contextPath}$!{auth.url}'>$!{auth.name}</a></li>
-			              			#end
-			            		#end
-		            		</ul>
-  						</li>
-					#end
-  				</ul>
-      		<div class='am-panel am-panel-default admin-sidebar-panel'>
-        		<div class='am-panel-bd'><p><span class="am-icon-bookmark"></span> 公告</p></div>
-      		</div>
-    	</div>
-  	</div>
 #end
 
 #macro(errorMsg)
@@ -207,12 +116,6 @@
 	  		document.getElementById("pageForm").submit();
 	}
   	</script>
-#end
-
-#macro(smMenu)
-  	<a href='#' class='am-show-sm-only admin-menu' data-am-offcanvas="{target: '#admin-offcanvas'}">
-    	<span class='am-icon-btn am-icon-th-list'></span>
-  	</a>
 #end
 
 #macro(amazeuiJs)

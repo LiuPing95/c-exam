@@ -1,0 +1,18 @@
+<form #if($action == 'edit') action="$!{rc.contextPath}/examSerial/edit" #else action="$!{rc.contextPath}/examSerial/add" #end
+        method="post" class="am-form" data-am-validator>
+  	#if($action == 'edit')
+    	<input type="hidden" name="id" value="$!{serial.id}" />
+  	#end
+  	<fieldset>
+    <div class="am-form-group">
+      	<label for="forDesc">考试场次</label><input type="text" id="forDesc" name="forDesc" value="$!{serial.forDesc}" required/>
+    </div>
+    <div class="am-cf">
+		<button class="am-btn am-btn-primary am-round am-fl" type="submit">#if($action == 'edit') 保存 #else 添加 #end</button>
+	  	<button class="am-btn am-btn-success am-round am-fr" type="button" onclick="window.location.href='$!{rc.contextPath}/serial/list'">返回</button>
+	</div>
+  	</fieldset>
+</form>
+<script>
+	
+</script>

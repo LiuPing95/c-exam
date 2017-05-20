@@ -1,0 +1,24 @@
+<form #if($action == 'edit') action="$!{rc.contextPath}/permission/edit" #else action="$!{rc.contextPath}/permission/add" #end
+        method="post" class="am-form" data-am-validator>
+  	#if($action == 'edit')
+    	<input type="hidden" name="id" value="$!{permission.id}" />
+  	#end
+  	<fieldset>
+    <div class="am-form-group">
+      	<label for="name">权限名</label><input type="text" id="name" name="name" value="$!{permission.name}" required/>
+    </div>
+    <div class="am-form-group">
+      	<label for="url">权限路径</label><input type="text" id="url" name="url" value="$!{permission.url}" required/>
+    </div>
+    <div class="am-form-group">
+      	<label for="forDesc">描述</label><input type="text" id="forDesc" name="forDesc" value="$!{permission.forDesc}" required/>
+    </div>
+    <div class="am-cf">
+		<button class="am-btn am-btn-primary am-round am-fl" type="submit">#if($action == 'edit') 保存 #else 添加 #end</button>
+	  	<button class="am-btn am-btn-success am-round am-fr" type="button" onclick="window.location.href='$!{rc.contextPath}/permission/list'">返回</button>
+	</div>
+  	</fieldset>
+</form>
+<script>
+	
+</script>

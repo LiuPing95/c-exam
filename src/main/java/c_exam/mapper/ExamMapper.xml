@@ -17,4 +17,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
+	<delete id="del">
+		delete from examInfo where examId = #{examId}
+	</delete>
+	
+	<select id="getQuestionIdsByExamId" resultType="int">
+		select questionId from examInfo where examId = #{examId}
+	</select>
+	
+	<select id="getExamInfoById" resultType="ExamInfo">
+		select * from examInfo where id = #{id}
+	</select>
+	
+	<select id="getExamInfos" resultType="ExamInfo">
+		select * 
+		from
+			(
+				select e.*,rownum rn 
+				from
+					(select * from examInfo) e
+				where #{end} >= rownum
+			)
+		where rn> #{start}
+	</select>
 </mapper>

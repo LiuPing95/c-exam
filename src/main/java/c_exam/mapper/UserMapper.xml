@@ -7,10 +7,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="addUser">
 		insert into userInfo (
-			id, roleId, name, pwd, gender, classId, deptId, createTime
+			id, birthday, addr, sign, idCard, phone, college, roleId, name, pwd, gender, classId, deptId, createTime
 		)
 		values (
 			seq_for_userInfo.nextval,
+			#{obj.birthday},
+			#{obj.addr},
+			#{obj.sign},
+			#{obj.idCard},
+			#{obj.phone},
+			#{obj.college},
 			#{obj.roleId},
 			#{obj.name},
 			#{obj.pwd},
@@ -20,5 +26,51 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			sysdate
 		)
 	</insert>
+	
+	<delete id="del">
+		delete from userInfo where id = #{id}
+	</delete>
+	
+	<update id="updateCurUser">
+		update userInfo set
+		pwd = #{user.pwd},
+		phone = #{user.phone},
+		sign = #{user.sign},
+		idCard = #{user.idCard},
+		birthday = #{user.birthday}
+		where id = #{user.id}
+	</update>
+	
+	<select id="userLogin" resultType="UserInfo">
+		select * from userInfo
+		where pwd = #{user.pwd}
+		<if test="user.idCard != null and user.idCard != ''">
+			and idCard = #{user.idCard}
+		</if>
+		<if test="user.id != 0">
+			and id = #{user.id}
+		</if>
+		<if test="user.phone != '' and user.phone != null">
+			and phone = #{user.phone}
+		</if>
+	</select>
+	
+	<select id="getUserById" resultType="UserInfo">
+		select * from userInfo where id = #{id}
+	</select>
+	
+	<select id="getUsers" resultType="c_exam.pojo.dto.UserDto">
+		select * 
+		from
+			(select u.*,rownum rn 
+			from
+				(select a.id,a.college,a.phone,a.gender,a.name,b.name className,c.name deptName,d.name roleName from userInfo a,classInfo b,deptInfo c,roleInfo d where a.classId=b.id and a.deptId=c.id and a.roleId=d.id) u
+			where #{end} >= rownum)
+		where rn > #{start}
+	</select>
+	
+	<select id="getStudents" resultType="c_exam.pojo.dto.UserDto">
+		select a.id,a.college,a.phone,a.gender,a.name,b.name className,c.name deptName,d.name roleName from userInfo a,classInfo b,deptInfo c,roleInfo d where a.classId=b.id and a.deptId=c.id and a.roleId=d.id and roleId = 100021 
+	</select>
 	
 </mapper>

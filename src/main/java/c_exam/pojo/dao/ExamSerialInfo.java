@@ -14,6 +14,8 @@ public class ExamSerialInfo implements Serializable {
 	
 	private String forDesc;
 	
+	private int status;
+	
 	private String createTime;
 
 	public int getId() {
@@ -38,6 +40,14 @@ public class ExamSerialInfo implements Serializable {
 
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 	
 }

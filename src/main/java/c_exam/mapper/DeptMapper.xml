@@ -16,4 +16,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
+	<select id="getDeptById" resultType="DeptInfo">
+		select * from deptInfo where id = #{id}
+	</select>
+	
+	<select id="getDepts" resultType="DeptInfo">
+		select * from deptInfo
+	</select>
+	
+	<select id="getDeptInfo" resultType="DeptInfo">
+		select * 
+		from 
+			(
+				select d.*,rownum rn 
+				from
+					(select * from deptInfo) d
+				where #{end} >= rownum
+			)
+		where rn > #{start}
+	</select>
 </mapper>

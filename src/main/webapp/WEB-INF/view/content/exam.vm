@@ -1,0 +1,170 @@
+#if($!{msg} && $!{msg} != "")
+	$!{msg}
+#else
+<div class="am-cf am-padding">
+	<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">$!{curExam.forDesc}——考试试卷</strong></div>
+</div>
+#if($!{currentUser.roleId} == 100021)
+<div class="am-cf am-padding">
+	<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">学号：$!{currentUser.id}</strong></div>
+</div>
+<div class="am-cf am-padding">
+	<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">姓名：$!{currentUser.name}</strong></div>
+</div>
+<div class="am-cf am-padding">
+	<p><button class="am-btn am-btn-danger" onclick="submitAll()">交卷</button></p>
+</div>
+#else
+<div class="am-cf am-padding">
+	<p><button class="am-btn am-btn-danger" onclick="confirm()">确认使用该试卷</button></p>
+</div>
+#end
+
+    <div id="question" class="am-cf">
+  	<fieldset>
+    #set($i=0)
+	#set($j=0)
+	#set($k=0)
+    #foreach($item in $!{questions})
+	    #if($!{item.questionType} == "CHOOSE")
+	    #set($i=$i+1)
+	    #if($i == 1)
+	    <div class="am-form-group">
+	      	<label for="doc-ipt-email-1">选择题</label>
+	    </div>
+	    #end
+	    <form action="" method="post" class="am-form" data-am-validator>
+		    <input type="hidden" id="questionId" name="questionId" value="$!{item.id}" />
+		    <input type="hidden" id="questionType" name="questionType" value="$!{item.questionType}" />
+		    <div class="am-form-group">
+		      	<label for="doc-ipt-email-1">${i}.</label>
+		      	$!{item.content}
+		    </div>
+		    <div class="am-radio">
+		  		<label>
+			        <input type="radio" name="answer" value="A">
+			       	A.$!{item.itemA}
+		  		</label>
+		    </div>
+		    <div class="am-radio">
+		      	<label>
+			        <input type="radio" name="answer" value="B">
+			    	B.$!{item.itemB}
+		      	</label>
+		    </div>
+		    <div class="am-radio">
+		      	<label>
+		        	<input type="radio" name="answer" value="C">
+		        	C.$!{item.itemC}
+		      	</label>
+		    </div>
+		    <div class="am-radio">
+		      	<label>
+		        	<input type="radio" name="answer" value="D">
+		        	D.$!{item.itemD}
+		      	</label>
+		    </div>
+		</form>
+		#elseif($!{item.questionType} == "BLANK")
+	    #set($j=$j+1)
+	    #if($j == 1)
+	    <div class="am-form-group">
+	      	<label for="doc-ipt-email-1">填空题</label>
+	    </div>
+	    #end
+	    <form action="" method="post" class="am-form" data-am-validator>
+		    <input type="hidden" id="questionId" name="questionId" value="$!{item.id}" />
+		    <input type="hidden" id="questionType" name="questionType" value="$!{item.questionType}" />
+		    <div class="am-form-group">
+		      	<label for="doc-ipt-email-1">${j}.</label>
+		      	$!{item.content}
+		    </div>
+			<div class="am-form-group">
+		      	<textarea class="" name="answer" id="answer" rows="5"></textarea>
+		    </div>
+		</form>
+		#elseif($!{item.questionType} == "PROGRESS")
+	    #set($k=$k+1)
+	    #if($k == 1)
+	    <div class="am-form-group">
+	      	<label for="doc-ipt-email-1">程序设计题</label>
+	    </div>
+	    #end
+	    <form action="" method="post" class="am-form" data-am-validator>
+		    <input type="hidden" id="questionId" name="questionId" value="$!{item.id}" />
+		    <input type="hidden" id="questionType" name="questionType" value="$!{item.questionType}" />
+		    <div class="am-form-group">
+		      	<label for="doc-ipt-email-1">${k}.</label>
+		      	$!{item.content}
+		    </div>
+		    <div class="am-form-group">
+		      	<textarea class="" name="answer" id="answer" rows="5"></textarea>
+		    </div>
+		</form>
+	    #end
+	#end
+	</div>
+  	</fieldset>
+#end
+  	
+<script>
+	function confirm(){
+		var s = "";
+		$("#question").find("form").each(function(){
+			var id = $(this).find("#questionId").val();
+			s = s + id + "_";
+		});
+		$.ajax({
+		    type : 'post',
+		    url : '$!{rc.contextPath}/examSerial/confirm',
+		    data : {
+		        str : s
+		    },
+		    cache : false,
+		    dataType:'json',
+		    error : function (data) {},
+		    success : function (data) {
+		      	if(data == true){
+		      		window.location.href='$!{rc.contextPath}/examSerial/examList';
+		      	}else{
+					$('#my-alert').modal('open');
+		      	}
+		    }
+		});
+	}
+	function submitAll(){
+		var s = "";
+		$("#question").find("form").each(function(){
+			var id = $(this).find("#questionId").val();
+			var type = $(this).find("#questionType").val();
+			var answer = "";
+			if(type == 'CHOOSE'){
+				answer = $(this).find('input[name="answer"]:checked').val();
+			}else{
+				answer = $(this).find('#answer').val();
+			}
+			if(answer == "" || answer == undefined){
+				##说明是没做的，要给出提示
+				answer = "noAnswer";
+			}
+			s = s + id + "_" + answer + "&";
+		});
+		$.ajax({
+		    type : 'post',
+		    url : '$!{rc.contextPath}/stuAnswer/add',
+		    data : {
+		        str : s
+		    },
+		    cache : false,
+		    dataType:'json',
+		    error : function (data) {},
+		    success : function (data) {
+		      	if(data == true){
+		      		window.location.href='$!{rc.contextPath}/index';
+		      	}else{
+					$('#my-alert').modal('open');
+		      	}
+		    }
+		});
+	}
+</script>
