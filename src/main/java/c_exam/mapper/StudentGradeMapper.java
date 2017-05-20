@@ -21,4 +21,6 @@ public interface StudentGradeMapper {
 
 	StudentGradeDto getGrade(@Param("stuId") int stuId, @Param("examId") int examId);
 
+	void updateGrade(@Param("stuId") Integer stuId, @Param("score") Integer score);
+
 }

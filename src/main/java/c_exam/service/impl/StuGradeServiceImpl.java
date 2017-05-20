@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import c_exam.mapper.StudentGradeMapper;
+import c_exam.pojo.dao.StudentGradeInfo;
 import c_exam.pojo.dto.StudentGradeDto;
 import c_exam.service.StuGradeService;
 
@@ -25,6 +26,14 @@ public class StuGradeServiceImpl implements StuGradeService {
 
 	public StudentGradeDto getReport(int stuId, int examId) {
 		return gradeMapper.getGrade(stuId, examId);
+	}
+
+	public void addStuGrade(StudentGradeInfo grade) {
+		gradeMapper.addStudentGrade(grade);
+	}
+
+	public void updateGrade(Integer stuId, Integer score) {
+		gradeMapper.updateGrade(stuId, score);
 	}
 
 }

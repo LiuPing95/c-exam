@@ -2,6 +2,7 @@ package c_exam.service;
 
 import java.util.List;
 
+import c_exam.pojo.dao.StudentGradeInfo;
 import c_exam.pojo.dto.StudentGradeDto;
 
 /**
@@ -14,5 +15,8 @@ public interface StuGradeService {
 
 	StudentGradeDto getReport(int stuId, int examId);
 
+	void addStuGrade(StudentGradeInfo grade);
+
+	void updateGrade(Integer stuId, Integer score);
 	
 }

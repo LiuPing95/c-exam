@@ -20,5 +20,7 @@ public interface UserService {
 	void updateCurUser(UserInfo user);
 
 	void del(Integer id);
+
+	List<UserDto> getStudents();
 	
 }

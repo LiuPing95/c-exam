@@ -69,4 +69,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where rn > #{start}
 	</select>
 	
+	<select id="getStudents" resultType="c_exam.pojo.dto.UserDto">
+		select a.id,a.college,a.phone,a.gender,a.name,b.name className,c.name deptName,d.name roleName from userInfo a,classInfo b,deptInfo c,roleInfo d where a.classId=b.id and a.deptId=c.id and a.roleId=d.id and roleId = 100021 
+	</select>
+	
 </mapper>

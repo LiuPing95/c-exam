@@ -1,4 +1,4 @@
-#if($!{msg} != "")
+#if($!{msg} && $!{msg} != "")
 	$!{msg}
 #else
 <div class="am-cf am-padding">

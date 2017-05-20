@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import c_exam.mapper.StudentAnswerMapper;
 import c_exam.pojo.dao.StudentAnswerInfo;
+import c_exam.pojo.dto.StudentAnswerDto;
 import c_exam.service.StuAnswerService;
 
 /**
@@ -29,6 +30,10 @@ public class StuAnswerServiceImpl implements StuAnswerService {
 
 	public List<StudentAnswerInfo> getStuAnswers(Integer userId, Integer examId) {
 		return mapper.getAnswerByUser(userId, examId);
+	}
+
+	public List<StudentAnswerDto> getStuAnswerDtos(Integer stuId, Integer examId) {
+		return mapper.getAnswerDtoByUser(stuId, examId);
 	}
 
 }

@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import c_exam.pojo.dao.ExamSerialInfo;
 import c_exam.pojo.dao.StudentAnswerInfo;
+import c_exam.pojo.dao.StudentGradeInfo;
 import c_exam.pojo.dto.UserDto;
 import c_exam.service.ExamSerialService;
 import c_exam.service.StuAnswerService;
+import c_exam.service.StuGradeService;
 import c_exam.util.AppConstant;
 
 /**
@@ -26,7 +28,15 @@ public class StuAnswerController {
 	private StuAnswerService answerService;
 	
 	@Autowired
+	private StuGradeService gradeService;
+	
+	@Autowired
 	private ExamSerialService serialService;
+	
+	@RequestMapping("list")
+	public void list() {
+		
+	}
 	
 	@RequestMapping("add")
 	@ResponseBody
@@ -45,6 +55,11 @@ public class StuAnswerController {
 			obj.setExamId(exam.getId());
 			answerService.add(obj);
 		}
+		StudentGradeInfo grade = new StudentGradeInfo();
+		grade.setExamId(exam.getId());
+		grade.setStuId(user.getId());
+		grade.setGrade(-1);
+		gradeService.addStuGrade(grade);
 		return true;
 	}
 	

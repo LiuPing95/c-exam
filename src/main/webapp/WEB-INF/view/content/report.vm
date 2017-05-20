@@ -1,0 +1,138 @@
+#if(($!{grade} && $!{grade.grade} >= 0) || $!{currentUser.roleName} == "教师")
+<div class="am-cf am-padding">
+	<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">$!{grade.examName}——考试试卷</strong></div>
+</div>
+<div class="am-cf am-padding">
+	<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">学号：$!{grade.stuId}</strong></div>
+</div>
+<div class="am-cf am-padding">
+	<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">姓名：$!{grade.stuName}</strong></div>
+</div>
+<div class="am-cf am-padding">
+	<div class="am-fl am-cf">
+		<strong class="am-text-primary am-text-lg">分数：</strong>
+		#if($!{currentUser.roleName} == "教师")
+		<input type="number" name="score" id="score" /><input class="am-btn am-btn-primary" type="button" value="确认打分" onclick="score()" />
+		#else
+		$!{grade.grade}
+		#end
+	</div>
+</div>
+
+    <div id="question" class="am-cf">
+  	<fieldset>
+    #set($i=0)
+	#set($j=0)
+	#set($k=0)
+    #foreach($item in $!{answers})
+	    #if($!{item.questionType} == "CHOOSE")
+	    #set($i=$i+1)
+	    #if($i == 1)
+	    <div class="am-form-group">
+	      	<label for="doc-ipt-email-1">选择题</label>
+	    </div>
+	    #end
+	    <form action="" method="post" class="am-form" data-am-validator>
+		    <div class="am-form-group">
+		      	<label for="doc-ipt-email-1">${i}.</label>
+		      	$!{item.questionContent}
+		    </div>
+		    <div class="am-form-group">
+		      	<label for="doc-ipt-email-1">你的答案：</label>
+		      	$!{item.stuAnswer}
+		    </div>
+	      	<div class="am-form-group">
+		      	<label for="doc-ipt-email-1">参考答案：</label>
+		      	$!{item.questionAnswer}
+		    </div>
+		    <div class="am-form-group">
+		      	<label for="doc-ipt-email-1">解析：</label>
+		      	$!{item.forDesc}
+		    </div>
+		   
+		</form>
+		#elseif($!{item.questionType} == "BLANK")
+	    #set($j=$j+1)
+	    #if($j == 1)
+	    <div class="am-form-group">
+	      	<label for="doc-ipt-email-1">填空题</label>
+	    </div>
+	    #end
+	    <form action="" method="post" class="am-form" data-am-validator>
+		    <div class="am-form-group">
+		      	<label for="doc-ipt-email-1">${i}.</label>
+		      	$!{item.questionContent}
+		    </div>
+		    <div class="am-form-group">
+		      	<label for="doc-ipt-email-1">你的答案：</label>
+		      	$!{item.stuAnswer}
+		    </div>
+	      	<div class="am-form-group">
+		      	<label for="doc-ipt-email-1">参考答案：</label>
+		      	$!{item.questionAnswer}
+		    </div>
+		    <div class="am-form-group">
+		      	<label for="doc-ipt-email-1">解析：</label>
+		      	$!{item.forDesc}
+		    </div>
+		</form>
+		#elseif($!{item.questionType} == "PROGRESS")
+	    #set($k=$k+1)
+	    #if($k == 1)
+	    <div class="am-form-group">
+	      	<label for="doc-ipt-email-1">程序设计题</label>
+	    </div>
+	    #end
+	    <form action="" method="post" class="am-form" data-am-validator>
+		    <div class="am-form-group">
+		      	<label for="doc-ipt-email-1">${i}.</label>
+		      	$!{item.questionContent}
+		    </div>
+		    <div class="am-form-group">
+		      	<label for="doc-ipt-email-1">你的答案：</label>
+		      	$!{item.stuAnswer}
+		    </div>
+	      	<div class="am-form-group">
+		      	<label for="doc-ipt-email-1">参考答案：</label>
+		      	$!{item.questionAnswer}
+		    </div>
+		    <div class="am-form-group">
+		      	<label for="doc-ipt-email-1">解析：</label>
+		      	$!{item.forDesc}
+		    </div>
+		</form>
+	    #end
+	#end
+#else
+	#if($!{currentUser.roleName} == "学生")
+	你还没有成绩
+	#elseif($!{currentUser.roleName} == "管理员")
+	你不是学生，不能产生成绩
+	#end
+#end
+	
+	</div>
+  	</fieldset>
+ <script>
+ function score(){
+ 	$.ajax({
+	    type : 'post',
+	    url : '$!{rc.contextPath}/stuGrade/h/h/update',
+	    data : {
+	        stuId : $!{grade.stuId},
+	        score : $("#score").val()
+	    },
+	    cache : false,
+	    dataType:'json',
+	    error : function (data) {},
+	    success : function (data) {
+	      	if(data == true){
+	      		window.location.href='$!{rc.contextPath}/stuGrade/list';
+	      	}else{
+	      		
+	      	}
+	    }
+	});
+ 	window.location.href="$!{rc.contextPath}/stuGrade/update?stuId=$!{grade.stuId}&score=score";
+ }
+ </script>

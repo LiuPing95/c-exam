@@ -48,4 +48,6 @@ public interface UserMapper {
 	void updateCurUser(@Param("user") UserInfo user);
 
 	void del(@Param("id") Integer id);
+
+	List<UserDto> getStudents();
 }

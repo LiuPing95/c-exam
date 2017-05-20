@@ -78,4 +78,8 @@ public class UserServiceImpl implements UserService {
 		userMapper.del(id);
 	}
 
+	public List<UserDto> getStudents() {
+		return userMapper.getStudents();
+	}
+
 }

@@ -64,7 +64,7 @@ public class ExamController {
 		if (stuAnswer.size() <= 0) {
 			ExamSerialInfo serialInfo = (ExamSerialInfo) session.getAttribute(AppConstant.CUR_EXAM);
 			List<Integer> questionIds = examService.getQuestionIdsByExamId(serialInfo.getId());
-			map.put("questions", questionService.getQuestionByIds(questionIds));
+			map.put("questions", questionService.getQuestionByIds(questionIds.size() <= 0 ? null : questionIds));
 		}
 		else {
 			map.put("msg", "你已经参加过考试不能重复考试，请等待考试结果");

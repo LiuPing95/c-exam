@@ -18,6 +18,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
+	<update id="updateGrade">
+		update stuGradeInfo set grade = #{score} where stuId = #{stuId}
+	</update>
+	
 	<select id="getStuGradeList" resultType="c_exam.pojo.dto.StudentGradeDto">
 		select
 			a.stuId, a.examId, a.grade, b.forDesc examName, c.name stuName 
