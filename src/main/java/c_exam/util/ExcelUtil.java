@@ -1,5 +1,7 @@
 package c_exam.util;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.DecimalFormat;
@@ -22,6 +24,19 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @since 2017年4月16日
  */
 public class ExcelUtil {
+
+	public static void main(String[] args) throws Exception {
+		FileInputStream fis = new FileInputStream(new File("C:\\Users\\Apple\\Desktop\\bank_personinfo.xls"));
+		StringBuffer sb = new StringBuffer("");
+		byte[] b = new byte[1024];
+		while (fis.read(b, 0, b.length) != -1) {
+			String s = new String(b, "utf-8");
+			sb.append(s);
+		}
+		System.out.println(sb.toString());
+		// 最后关闭流
+		fis.close();
+	}
 
 	/**
 	 * TODO：目前还有一个问题就是最后总会读取一个空字符，暂时没有考虑
@@ -48,7 +63,7 @@ public class ExcelUtil {
 						result.add(new String[] {});
 						continue;
 					}
-					
+
 					int tempRowSize = row.getLastCellNum();
 					if (tempRowSize > rowSize) {
 						rowSize = tempRowSize;
@@ -69,12 +84,10 @@ public class ExcelUtil {
 									Date date = cell.getDateCellValue();
 									if (date != null) {
 										value = new SimpleDateFormat("yyyy-MM-dd").format(date);
-									}
-									else {
+									} else {
 										value = "";
 									}
-								}
-								else {
+								} else {
 									value = new DecimalFormat("0").format(cell.getNumericCellValue());
 								}
 								break;
@@ -82,8 +95,7 @@ public class ExcelUtil {
 								// 导入时如果为公式生成的数据则无值
 								if (!cell.getStringCellValue().equals("")) {
 									value = cell.getStringCellValue();
-								}
-								else {
+								} else {
 									value = cell.getNumericCellValue() + "";
 								}
 								break;
